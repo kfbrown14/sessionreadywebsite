@@ -75,13 +75,25 @@ const PersonaButton = memo<PersonaButtonProps>(({ persona, isSelected, onSelect 
     aria-pressed={isSelected}
   >
     <div className="flex items-start gap-4">
-      <div 
-        className="w-12 h-12 rounded-full flex-shrink-0"
-        style={{ backgroundColor: persona.bodyColor + '40' }}
-      />
+      {/* Avatar - either custom image or colored circle */}
+      {persona.avatar ? (
+        <img 
+          src={persona.avatar}
+          alt={`${persona.name} avatar`}
+          className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
+        />
+      ) : (
+        <div 
+          className="w-12 h-12 rounded-full flex-shrink-0"
+          style={{ backgroundColor: persona.bodyColor + '40' }}
+        />
+      )}
       <div className="flex-1">
         <h3 className="font-secondary text-lg font-semibold text-earth-dark mb-2">{persona.name}</h3>
-        <p className="font-primary text-sm text-earth line-clamp-3">{persona.personality}</p>
+        {/* Show description if available, otherwise fall back to personality */}
+        <p className="font-primary text-sm text-earth line-clamp-3">
+          {persona.description || persona.personality}
+        </p>
       </div>
     </div>
   </motion.button>
@@ -121,7 +133,8 @@ const ClientSelectorModal = memo<ClientSelectorModalProps>(({
     const lowerSearchTerm = searchTerm.toLowerCase();
     return samplePersonas.filter(persona => 
       persona.name.toLowerCase().includes(lowerSearchTerm) ||
-      persona.personality.toLowerCase().includes(lowerSearchTerm)
+      persona.personality.toLowerCase().includes(lowerSearchTerm) ||
+      (persona.description && persona.description.toLowerCase().includes(lowerSearchTerm))
     );
   }, [samplePersonas, searchTerm]);
 
@@ -367,7 +380,7 @@ function Practice() {
             </Suspense>
           </div>
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-medium p-6">
-            <ControlTray />
+            <ControlTray onEndSession={handleEndSession} />
           </div>
         </div>
       </motion.div>

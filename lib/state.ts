@@ -3,7 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import { create } from 'zustand';
-import { ClientPersona, AnxiousAlex, GrievingGrace, DepressedDavid, StressedSam, createNewPersona } from './presets/agents'; // Now imports ClientPersona and new presets
+import { 
+  ClientPersona, 
+  AnxiousAlex, 
+  GrievingGrace, 
+  DepressedDavid, 
+  StressedSam, 
+  TeenSofia,
+  MalikAnxious,
+  AikoGrieving,
+  JordanTrauma,
+  ZahraDepression,
+  createNewPersona 
+} from './presets/agents'; // Now imports ClientPersona and new presets
 
 /**
  * User (Therapist)
@@ -45,7 +57,19 @@ export const useClientPersonaStore = create<{
   updatePersona: (personaId: string, adjustments: Partial<ClientPersona>) => void;
 }>(set => ({
   currentPersona: AnxiousAlex, // Default to AnxiousAlex
-  samplePersonas: [AnxiousAlex, GrievingGrace, DepressedDavid, StressedSam],
+  samplePersonas: [
+    // Original personas
+    AnxiousAlex, 
+    GrievingGrace, 
+    DepressedDavid, 
+    StressedSam,
+    // New detailed scenarios
+    TeenSofia,
+    MalikAnxious,
+    AikoGrieving,
+    JordanTrauma,
+    ZahraDepression,
+  ],
   customPersonas: [],
 
   addPersona: (persona: ClientPersona) => {

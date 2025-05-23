@@ -22,17 +22,20 @@ import cn from 'classnames';
 
 import { memo, ReactNode, useEffect, useRef, useState } from 'react';
 import { AudioRecorder } from '../../../lib/audio-recorder';
+import ChatInterface from '../ChatInterface';
 
 import { useLiveAPIContext } from '../../../contexts/LiveAPIContext';
 import { useUI } from '@/lib/state';
 
 export type ControlTrayProps = {
   children?: ReactNode;
+  onEndSession?: () => void;
 };
 
-function ControlTray({ children }: ControlTrayProps) {
+function ControlTray({ children, onEndSession }: ControlTrayProps) {
   const [audioRecorder] = useState(() => new AudioRecorder());
   const [muted, setMuted] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const connectButtonRef = useRef<HTMLButtonElement>(null);
 
   const { showAgentEdit, showUserConfig } = useUI();
@@ -71,36 +74,54 @@ function ControlTray({ children }: ControlTrayProps) {
   }, [connected, client, muted, audioRecorder]);
 
   return (
-    <section className="control-tray">
-      <nav className={cn('actions-nav', { disabled: !connected })}>
-        <button
-          className={cn('action-button mic-button')}
-          onClick={() => setMuted(!muted)}
-        >
-          {!muted ? (
-            <span className="material-symbols-outlined filled">mic</span>
-          ) : (
-            <span className="material-symbols-outlined filled">mic_off</span>
-          )}
-        </button>
-        {children}
-      </nav>
-
-      <div className={cn('connection-container', { connected })}>
-        <div className="connection-button-container">
+    <>
+      <section className="control-tray">
+        <nav className={cn('actions-nav', { disabled: !connected })}>
           <button
-            ref={connectButtonRef}
-            className={cn('action-button connect-toggle', { connected })}
-            onClick={connected ? disconnect : connect}
+            className={cn('action-button mic-button')}
+            onClick={() => setMuted(!muted)}
+            title={muted ? 'Unmute microphone' : 'Mute microphone'}
           >
-            <span className="material-symbols-outlined filled">
-              {connected ? 'pause' : 'play_arrow'}
+            {!muted ? (
+              <span className="material-symbols-outlined filled">mic</span>
+            ) : (
+              <span className="material-symbols-outlined filled">mic_off</span>
+            )}
+          </button>
+          
+          {/* Chat toggle button */}
+          <button
+            className={cn('action-button', { 'connected': showChat })}
+            onClick={() => setShowChat(!showChat)}
+            title="Toggle chat interface"
+          >
+            <span className="material-symbols-outlined">
+              {showChat ? 'close' : 'chat'}
             </span>
           </button>
+          
+          {children}
+        </nav>
+
+        <div className={cn('connection-container', { connected })}>
+          <div className="connection-button-container">
+            <button
+              ref={connectButtonRef}
+              className={cn('action-button connect-toggle', { connected })}
+              onClick={connected ? disconnect : connect}
+            >
+              <span className="material-symbols-outlined filled">
+                {connected ? 'pause' : 'play_arrow'}
+              </span>
+            </button>
+          </div>
+          <span className="text-indicator">Streaming</span>
         </div>
-        <span className="text-indicator">Streaming</span>
-      </div>
-    </section>
+      </section>
+
+      {/* Chat Interface */}
+      {showChat && <ChatInterface onClose={() => setShowChat(false)} onEndSession={onEndSession} />}
+    </>
   );
 }
 

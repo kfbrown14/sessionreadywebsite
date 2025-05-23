@@ -414,7 +414,74 @@ header:hover .createButton {
   gap: 8px;
   padding-bottom: 18px;
   z-index: 12;
+  /* Allow text input panel to show above */
+  overflow: visible;
 }
+
+/* Ensure control tray stays above other elements */
+.control-tray .actions-nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* Text input panel - ensure centering */
+.control-tray + div {
+  margin: 0 auto;
+}
+
+/* Text input panel positioning */
+.control-tray > div[style*="top: 100%"] {
+  z-index: 11;
+}
+
+/* Responsive adjustments for text input panel */
+@media (max-width: 768px) {
+  /* Text input panel on mobile */
+  .control-tray + div[style*="position: fixed"] {
+    width: calc(100% - 2rem) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Text input panel focus styles */
+.control-tray input[type="text"]:focus,
+.control-tray textarea:focus {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+}
+
+/* Smooth transitions for text input elements */
+.control-tray input[type="text"],
+.control-tray textarea {
+  transition: all 0.2s ease;
+}
+
+/* Textarea specific styles */
+.control-tray textarea {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+.control-tray textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.control-tray textarea::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.control-tray textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.control-tray textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .control-tray .disabled .action-button,
 .control-tray .action-button.disabled {
   background: rgba(0, 0, 0, 0);
