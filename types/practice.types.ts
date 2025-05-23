@@ -34,6 +34,7 @@ export interface UsePracticeLogicReturn {
   currentPersona: import('../lib/presets/agents').ClientPersona;
   samplePersonas: import('../lib/presets/agents').ClientPersona[];
   connected: boolean;
+  connecting: boolean;
   setCurrentPersona: (persona: import('../lib/presets/agents').ClientPersona) => void;
   handleNavigateHome: () => void;
   handleOpenSettings: () => void;
@@ -43,6 +44,7 @@ export interface UsePracticeLogicReturn {
 
 export interface LiveAPIContextValue {
   connected: boolean;
+  connecting: boolean;
   client: any; // Replace with actual client type
   setConfig: (config: any) => void; // Replace with actual config type
   connect: () => void;

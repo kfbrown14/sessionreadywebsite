@@ -45,8 +45,12 @@ export default function KeynoteCompanion() {
 
   // Set the configuration for the Live API
   useEffect(() => {
-    if (!current) return; // Guard against current being undefined initially
-    setConfig({
+    if (!current) {
+      console.log('KeynoteCompanion: No current persona, skipping config');
+      return;
+    }
+    
+    const newConfig = {
       responseModalities: [Modality.AUDIO],
       speechConfig: {
         voiceConfig: {
@@ -60,19 +64,28 @@ export default function KeynoteCompanion() {
           },
         ],
       },
-    });
+    };
+    
+    console.log('KeynoteCompanion: Setting config with persona:', current.name, 'voice:', current.voice);
+    console.log('KeynoteCompanion: Full config:', newConfig);
+    setConfig(newConfig);
   }, [setConfig, user, current]);
 
   // Initiate the session when the Live API connection is established
   // Use the persona's initial greeting if available
   useEffect(() => {
     const beginSession = async () => {
-      if (!connected || !current) return; // Also ensure current is available
+      if (!connected || !current) {
+        console.log('KeynoteCompanion: Not connected or no current persona, skipping begin session');
+        return;
+      }
       
       // If the persona has a specific initial greeting, use it
       const initialPrompt = current.initialGreeting 
         ? `Say: "${current.initialGreeting}"`
         : 'Greet the user and introduce yourself and your role.';
+      
+      console.log('KeynoteCompanion: Beginning session with prompt:', initialPrompt);
       
       client.send(
         {
@@ -205,7 +218,7 @@ export default function KeynoteCompanion() {
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
         backdropFilter: 'blur(10px)',
       }}>
-        <BasicFace canvasRef={faceCanvasRef!} color={current.bodyColor} />
+      <BasicFace canvasRef={faceCanvasRef!} color={current.bodyColor} />
       </div>
     </div>
   );

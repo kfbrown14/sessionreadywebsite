@@ -34,8 +34,11 @@ export type UseLiveApiResults = {
   connect: () => Promise<void>;
   disconnect: () => void;
   connected: boolean;
+  connecting: boolean;
 
   volume: number;
+  setPaused: (paused: boolean) => void;
+  paused: boolean;
 };
 
 export function useLiveApi({
@@ -51,7 +54,9 @@ export function useLiveApi({
 
   const [volume, setVolume] = useState(0);
   const [connected, setConnected] = useState(false);
+  const [connecting, setConnecting] = useState(false);
   const [config, setConfig] = useState<LiveConnectConfig>({});
+  const [paused, setPaused] = useState(false);
 
   // register audio for streaming server -> speakers
   useEffect(() => {
@@ -75,10 +80,12 @@ export function useLiveApi({
   useEffect(() => {
     const onOpen = () => {
       setConnected(true);
+      setConnecting(false);
     };
 
     const onClose = () => {
       setConnected(false);
+      setConnecting(false);
     };
 
     const stopAudioStreamer = () => {
@@ -88,7 +95,7 @@ export function useLiveApi({
     };
 
     const onAudio = (data: ArrayBuffer) => {
-      if (audioStreamerRef.current) {
+      if (audioStreamerRef.current && !paused) {
         audioStreamerRef.current.addPCM16(new Uint8Array(data));
       }
     };
@@ -106,20 +113,27 @@ export function useLiveApi({
       client.off('interrupted', stopAudioStreamer);
       client.off('audio', onAudio);
     };
-  }, [client]);
+  }, [client, paused]);
 
   const connect = useCallback(async () => {
     if (!config) {
       throw new Error('config has not been set');
     }
     client.disconnect();
-    await client.connect(config);
-  }, [client, setConnected, config]);
+    setConnecting(true);
+    try {
+      await client.connect(config);
+    } catch (error) {
+      setConnecting(false);
+      throw error;
+    }
+  }, [client, config]);
 
   const disconnect = useCallback(async () => {
     client.disconnect();
     setConnected(false);
-  }, [setConnected, client]);
+    setConnecting(false);
+  }, [client]);
 
   return {
     client,
@@ -128,6 +142,9 @@ export function useLiveApi({
     connect,
     connected,
     disconnect,
+    connecting,
     volume,
+    setPaused,
+    paused,
   };
 }

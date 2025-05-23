@@ -14,9 +14,10 @@ interface Message {
 interface ChatInterfaceProps {
   onClose?: () => void;
   onEndSession?: () => void;
+  isPaused?: boolean;
 }
 
-const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
+const ChatInterface = memo(({ onClose, onEndSession, isPaused = false }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -56,7 +57,7 @@ const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
   }, [connected, currentPersona]);
 
   const handleSendMessage = async () => {
-    if (!inputText.trim() || !connected) return;
+    if (!inputText.trim() || !connected || isPaused) return;
 
     // Add therapist message
     const therapistMessage: Message = {
@@ -100,56 +101,35 @@ const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
 
     // Handle content (both voice transcripts and text responses)
     const handleContent = (data: any) => {
-      // Check multiple possible content structures
-      let textContent = '';
-      
-      // Check for modelTurn.parts structure
       if (data.modelTurn?.parts) {
         const textParts = data.modelTurn.parts.filter((p: any) => p.text);
         if (textParts.length > 0) {
-          textContent = textParts.map((p: any) => p.text).join(' ');
-        }
-      }
-      
-      // Check for direct text property
-      if (data.text && !textContent) {
-        textContent = data.text;
-      }
-      
-      // Check for content property
-      if (data.content && !textContent) {
-        textContent = data.content;
-      }
-      
-      // Check for transcript property
-      if (data.transcript && !textContent) {
-        textContent = data.transcript;
-      }
-      
-      if (textContent) {
-        // Check if we already have this message (to avoid duplicates)
-        setMessages(prev => {
-          const lastMessage = prev[prev.length - 1];
-          if (lastMessage?.role === 'client' && lastMessage?.content === textContent) {
-            return prev; // Skip duplicate
-          }
+          const content = textParts.map((p: any) => p.text).join(' ');
           
-          const clientMessage: Message = {
-            id: Date.now().toString(),
-            role: 'client',
-            content: textContent,
-            timestamp: new Date(),
-            source: 'voice', // AI responses are voice-based
-          };
-          return [...prev, clientMessage];
-        });
-        setIsTyping(false);
-        setIsClientSpeaking(false);
+          // Check if we already have this message (to avoid duplicates)
+          setMessages(prev => {
+            const lastMessage = prev[prev.length - 1];
+            if (lastMessage?.role === 'client' && lastMessage?.content === content) {
+              return prev; // Skip duplicate
+            }
+            
+            const clientMessage: Message = {
+              id: Date.now().toString(),
+              role: 'client',
+              content: content,
+              timestamp: new Date(),
+              source: 'voice', // AI responses are voice-based
+            };
+            return [...prev, clientMessage];
+          });
+          setIsTyping(false);
+          setIsClientSpeaking(false);
+        }
       }
     };
 
     // Handle when AI starts speaking (audio event)
-    const handleAudio = (data: any) => {
+    const handleAudio = () => {
       setIsClientSpeaking(true);
       setIsTyping(false);
     };
@@ -175,6 +155,25 @@ const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
       client.off('audio', handleAudio);
       client.off('interrupted', handleInterrupted);
       client.off('turncomplete', handleTurnComplete);
+    };
+  }, [client]);
+
+  // Listen for log events to capture user voice transcripts (when available)
+  useEffect(() => {
+    if (!client) return;
+
+    const handleLog = (log: any) => {
+      // Future: Check for user voice transcript events
+      // This is where we would capture what the user says via voice
+      if (log.type === 'user.speech' || log.type === 'client.voice') {
+        // Add user voice message when this feature becomes available
+        console.log('User voice log:', log);
+      }
+    };
+
+    client.on('log', handleLog);
+    return () => {
+      client.off('log', handleLog);
     };
   }, [client]);
 
@@ -254,6 +253,11 @@ const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+          {isPaused && (
+            <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-3 rounded-lg text-center">
+              <p className="text-sm font-medium">Session is paused - AI responses are temporarily stopped</p>
+            </div>
+          )}
           <AnimatePresence>
             {messages.map((message) => (
               <motion.div
@@ -373,14 +377,14 @@ const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Type your therapeutic intervention..."
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sage/50 text-base text-gray-800 placeholder-gray-400"
+              placeholder={isPaused ? "Session is paused..." : "Type your therapeutic intervention..."}
+              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sage/50 text-base text-black"
               rows={2}
-              disabled={!connected || isClientSpeaking}
+              disabled={!connected || isClientSpeaking || isPaused}
             />
             <button
               onClick={handleSendMessage}
-              disabled={!connected || !inputText.trim() || isClientSpeaking}
+              disabled={!connected || !inputText.trim() || isClientSpeaking || isPaused}
               className="px-6 py-2 bg-sage text-white rounded-lg hover:bg-sage-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -389,7 +393,9 @@ const ChatInterface = memo(({ onClose, onEndSession }: ChatInterfaceProps) => {
             </button>
           </div>
           <p className="text-xs text-gray-500 text-center mt-2">
-            {isClientSpeaking 
+            {isPaused 
+              ? 'Session paused - Resume to continue'
+              : isClientSpeaking 
               ? 'Client is speaking via voice...' 
               : 'Press Enter to send • Shift+Enter for new line'
             }

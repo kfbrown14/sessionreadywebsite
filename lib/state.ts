@@ -5,11 +5,6 @@
 import { create } from 'zustand';
 import { 
   ClientPersona, 
-  AnxiousAlex, 
-  GrievingGrace, 
-  DepressedDavid, 
-  StressedSam, 
-  TeenSofia,
   MalikAnxious,
   AikoGrieving,
   JordanTrauma,
@@ -56,15 +51,9 @@ export const useClientPersonaStore = create<{
   addPersona: (persona: ClientPersona) => void;
   updatePersona: (personaId: string, adjustments: Partial<ClientPersona>) => void;
 }>(set => ({
-  currentPersona: AnxiousAlex, // Default to AnxiousAlex
+  currentPersona: MalikAnxious, // Default to MalikAnxious
   samplePersonas: [
-    // Original personas
-    AnxiousAlex, 
-    GrievingGrace, 
-    DepressedDavid, 
-    StressedSam,
-    // New detailed scenarios
-    TeenSofia,
+    // Detailed therapy scenarios
     MalikAnxious,
     AikoGrieving,
     JordanTrauma,

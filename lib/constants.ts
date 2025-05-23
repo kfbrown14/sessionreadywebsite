@@ -20,6 +20,7 @@
 
 /**
  * Default Live API model to use
+ * Updated to use the correct Gemini 2.0 Flash model
  */
-export const DEFAULT_LIVE_API_MODEL = 'gemini-2.5-flash-preview-native-audio-dialog';
+export const DEFAULT_LIVE_API_MODEL = 'gemini-2.0-flash-exp';
 

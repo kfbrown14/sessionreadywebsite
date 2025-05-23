@@ -83,10 +83,10 @@ const PersonaButton = memo<PersonaButtonProps>(({ persona, isSelected, onSelect 
           className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
         />
       ) : (
-        <div 
-          className="w-12 h-12 rounded-full flex-shrink-0"
-          style={{ backgroundColor: persona.bodyColor + '40' }}
-        />
+      <div 
+        className="w-12 h-12 rounded-full flex-shrink-0"
+        style={{ backgroundColor: persona.bodyColor + '40' }}
+      />
       )}
       <div className="flex-1">
         <h3 className="font-secondary text-lg font-semibold text-earth-dark mb-2">{persona.name}</h3>
@@ -271,7 +271,7 @@ const usePracticeLogic = (): UsePracticeLogicReturn => {
   const { showUserConfig, showAgentEdit, setShowUserConfig } = useUI();
   const user = useUser();
   const { currentPersona, samplePersonas, setCurrentPersona } = useClientPersonaStore();
-  const { connected, disconnect } = useLiveAPIContext();
+  const { connected, disconnect, connecting } = useLiveAPIContext();
   const [showClientSelector, setShowClientSelector] = useState(!connected);
 
   // Use effect to handle initial user config
@@ -301,6 +301,7 @@ const usePracticeLogic = (): UsePracticeLogicReturn => {
     currentPersona,
     samplePersonas,
     connected,
+    connecting,
     setCurrentPersona: setCurrentPersona as (persona: ClientPersona) => void,
     handleNavigateHome,
     handleOpenSettings,
@@ -317,6 +318,7 @@ function Practice() {
     currentPersona,
     samplePersonas,
     connected,
+    connecting,
     setCurrentPersona,
     handleNavigateHome,
     handleOpenSettings,
@@ -375,9 +377,27 @@ function Practice() {
                 </motion.button>
               )}
             </div>
-            <Suspense fallback={<LoadingFallback />}>
-              <KeynoteCompanion />
-            </Suspense>
+            {connecting ? (
+              <div className="flex items-center justify-center min-h-[400px]">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-16 h-16 border-4 border-sage border-t-transparent rounded-full mx-auto mb-4"
+                  />
+                  <p className="font-primary text-lg text-earth-dark">Connecting to {currentPersona.name}...</p>
+                  <p className="font-primary text-sm text-earth mt-2">Preparing your therapy session</p>
+                </motion.div>
+              </div>
+            ) : (
+              <Suspense fallback={<LoadingFallback />}>
+                <KeynoteCompanion />
+              </Suspense>
+            )}
           </div>
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-medium p-6">
             <ControlTray onEndSession={handleEndSession} />

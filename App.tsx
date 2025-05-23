@@ -35,6 +35,10 @@ if (typeof API_KEY !== 'string' || !API_KEY) {
   );
 }
 
+// Log API key info for debugging (safely)
+console.log('App: API key loaded, length:', API_KEY?.length || 0);
+console.log('App: API key starts with:', API_KEY?.substring(0, 4) + '...');
+
 // Placeholder page component
 const ComingSoonPage = ({ title }: { title: string }) => (
   <div className="min-h-screen">

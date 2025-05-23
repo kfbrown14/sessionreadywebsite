@@ -56,6 +56,7 @@ code {
   --Red-500: #ff4600;
   --Red-600: #e03c00;
   --Red-700: #bd3000;
+  --Yellow-500: #f59e0b;
   --card-header: #2e96ff;
   --card-border: #217bfe;
   --card-background: #13151a;
@@ -508,6 +509,9 @@ header:hover .createButton {
 }
 .control-tray .connection-container:not(.connected) .text-indicator {
   opacity: 0;
+}
+.control-tray .connection-container.connecting .text-indicator {
+  opacity: 1;
 }
 
 .actions-nav {
@@ -970,4 +974,40 @@ input[type='range'] {
 .error-screen .close-button {
   color: white;
   font-size: 24px;
+}
+
+/* Add spin animation at the end of the file */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility class for spin animation */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Connecting state styles */
+.control-tray .connection-container.connecting .connection-button-container {
+  border-color: var(--Blue-500);
+  background: var(--Neutral-10);
+}
+
+.control-tray .connection-container.connecting .text-indicator {
+  color: var(--Blue-500);
+  animation: opacity-pulse 1.5s ease-in-out infinite;
+}
+
+/* Pause state styles */
+.control-tray .action-button.connected.pause-active {
+  background: var(--Yellow-500);
+  color: var(--Neutral-5);
+}
+
+.control-tray .action-button.connected.pause-active:hover {
+  border: 1px solid var(--Yellow-500);
 }

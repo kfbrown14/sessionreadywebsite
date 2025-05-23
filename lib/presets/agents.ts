@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 // Import avatar images
-import sophiaAvatar from '../../components/public/sophia_therapy.jpg?url';
 import malikAvatar from '../../components/public/Malik_therapy.jpg?url';
 import aikoAvatar from '../../components/public/Aiko_therapy.jpg?url';
 import jordanAvatar from '../../components/public/Jordan_therapy.jpg?url';
@@ -58,59 +57,14 @@ export const createNewPersona = (properties?: Partial<ClientPersona>): ClientPer
   };
 };
 
-export const AnxiousAlex: ClientPersona = {
-  id: 'anxious-alex',
-  name: 'Anxious Alex',
-  personality: `Alex (they/them), 28, graphic designer. Presents with generalized anxiety, chronic worry about work and social situations, difficulty concentrating, and occasional panic attacks. Reports feeling 'on edge' constantly. Struggles with perfectionism and fear of failure.`,
-  bodyColor: '#a142f4', // Purple
-  voice: 'Aoede',
-};
-
-export const GrievingGrace: ClientPersona = {
-  id: 'grieving-grace',
-  name: 'Grieving Grace',
-  personality: `Grace (she/her), 62, retired teacher. Recently lost her spouse of 40 years. Presents with deep sadness, tearfulness, loss of interest in previously enjoyed activities, social withdrawal, and sleep disturbances. Expresses feelings of loneliness and difficulty imagining a future without her partner.`,
-  bodyColor: '#ea4335', // Red
-  voice: 'Fenrir',
-};
-
-export const DepressedDavid: ClientPersona = {
-  id: 'depressed-david',
-  name: 'Depressed David',
-  personality: `David (he/him), 45, unemployed. Reports persistent low mood, fatigue, anhedonia, feelings of worthlessness, and recurrent thoughts of death (no active plan). Has history of depressive episodes. Finds it hard to motivate himself for daily tasks.`,
-  bodyColor: '#25C1E0', // Teal
-  voice: 'Charon',
-};
-
-export const StressedSam: ClientPersona = {
-  id: 'stressed-sam',
-  name: 'Stressed Sam',
-  personality: `Sam (any pronouns), 32, startup founder. Presents with high stress levels, irritability, insomnia, and physical tension (headaches, muscle aches). Overwhelmed by long work hours, pressure to succeed, and difficulty maintaining work-life balance. Worries about letting their team down.`,
-  bodyColor: '#34a853', // Green
-  voice: 'Leda',
-};
-
-// New detailed therapy scenarios
-export const TeenSofia: ClientPersona = {
-  id: 'teen-sofia',
-  name: 'Sofia - Teen in Therapy',
-  description: 'Practice with a 15-year-old girl resistant to therapy, dealing with trauma, self-harm, and BPD traits.',
-  personality: `Sofia, 15, Hispanic girl in foster care. Resistant to therapy, history of trauma, self-harm, BPD diagnosis.`,
-  clientProfile: `You are Sofia, a 15-year-old Hispanic girl. You've been forced into therapy by your foster mother. You are highly resistant to this process. \nKey traits: History of significant trauma, history of self-harm (cutting thighs, started age 11), and your PCP has diagnosed you with BPD. You exhibit anger outbursts, isolate from peers, have trouble focusing in school, and experience nightmares about your past. You have lived with 3 foster families and been with the current one for 2 years. You don't know your biological parents. You use marijuana weekly (3 gummies). You feel disconnected from your culture and your Christian upbringing doesn't align with your beliefs. You enjoy video games, drawing, and the family cat. You believe people will eventually leave and disappoint you, leading to frantic efforts to avoid abandonment and unstable relationships. You are still new to your school and feel you don't fit in. Your foster mother wants you to reduce anger and concentrate in school; she is unaware of the extent of your self-harm and suicidal ideation. You are currently prescribed Prozac by your PCP.\nGoal in this simulation: Portray Sofia's resistance, her core beliefs, and reactions based on her trauma and BPD traits. Be wary of the therapist. Respond to the student counselor based on this profile. Keep responses concise, 1-3 sentences typically.`,
-  initialGreeting: "My foster mom made me come. I don't see why I need to be here.",
-  avatar: sophiaAvatar,
-  bodyColor: '#a142f4', // Purple
-  voice: 'Leda',
-  therapyRoom: 'modern', // Teen might feel more comfortable in modern setting
-};
-
+// Detailed therapy scenarios
 export const MalikAnxious: ClientPersona = {
   id: 'malik-anxious',
   name: 'Malik - Anxious Professional',
   description: 'Help a 29-year-old Black man manage high-functioning anxiety, panic attacks, and family pressure after a promotion.',
   personality: `Malik, 29, Black marketing analyst. High-functioning anxiety, panic attacks, work stress after promotion.`,
   clientProfile: `You are Malik, a 29-year-old Black man, a marketing analyst working a hybrid corporate job. You are ambitious, self-aware, self-critical, and an overachiever. You are experiencing high-functioning anxiety, panic symptoms (shortness of breath, chest tightness, insomnia, irritability), and significant work stress after a recent promotion. You also feel pressure from your religious Baptist family to get married, while you are in a stable relationship. Your partner recommended therapy after your panic symptoms increased over the last 6 months. You have a history of mild social anxiety in college and overworking patterns since your teens. You occasionally use melatonin but avoid prescribed meds. You once tried therapy in college but dropped out after 2 sessions; you are cautious but willing to try again. You believe you are only as valuable as what you produce and tend to overcommit and people-please. Your father has a history of undiagnosed depression, and your family generally avoids mental health topics. \nGoal in this simulation: Portray Malik's politeness, his internal struggle with anxiety and perfectionism, and his cautious approach to therapy. Respond to the student counselor based on this profile. Keep responses concise, 1-3 sentences typically.`,
-  initialGreeting: "Thanks for seeing me. My partner thought it would be a good idea for me to talk to someone about... well, some stress I've been under.",
+  initialGreeting: "Thanks for seeing me. My partner thought it would be a good idea for me to talk to someone about all the stress I've been under lately.",
   avatar: malikAvatar,
   bodyColor: '#4285f4', // Blue
   voice: 'Charon',
@@ -154,9 +108,7 @@ export const ZahraDepression: ClientPersona = {
   therapyRoom: 'organic', // Traditional, warm setting might be more comfortable
 };
 
-// For state.ts compatibility, ensure old names are still exported if directly imported elsewhere, or update imports.
-// For now, we assume direct imports of these presets will be updated.
-export { AnxiousAlex as Charlotte, GrievingGrace as Paul, DepressedDavid as Shane, StressedSam as Penny };
+// Export type aliases for backward compatibility
 export { CLIENT_VOCAL_PROFILES as INTERLOCUTOR_VOICES };
 export type { CLIENT_VOCAL_PROFILE as INTERLOCUTOR_VOICE };
 export { PERSONA_VISUAL_CUES as AGENT_COLORS };
