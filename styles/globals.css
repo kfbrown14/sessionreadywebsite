@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for Session Ready */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors;
+  }
+  
+  .card {
+    @apply bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20;
+  }
+}
+
+@layer utilities {
+  .gradient-nature {
+    @apply bg-gradient-to-br from-sage-light/50 via-lavender-light to-earth-light/30;
+  }
+  
+  .gradient-sage {
+    @apply bg-gradient-to-br from-sage/80 to-sage-dark/90;
+  }
+} 

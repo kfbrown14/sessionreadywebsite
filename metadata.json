@@ -1,0 +1,7 @@
+{
+  "name": "Session Ready",
+  "description": "Session Ready is a therapist training tool designed to help aspiring and practicing therapists hone their client interaction skills in a simulated environment. It presents a variety of AI-driven client personas, allowing trainees to practice their interventions by typing (and soon, speaking). The application, powered by Google Gemini, simulates client responses and provides real-time feedback on the student's technique. In short, Session Ready coaches therapists on how to effectively communicate with diverse clients facing various conditions before they engage in real-world practice.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
