@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Brain, Users, Sprout, Flower, BookOpen, Heart, LineChart, Shield } from 'lucide-react';
+import { Brain, Users, Sprout, BookOpen, Heart, LineChart, Shield } from 'lucide-react';
 import Navigation from '../../components/common/Navigation';
 import Footer from '../../components/common/Footer';
 import Button from '../../components/common/Button';

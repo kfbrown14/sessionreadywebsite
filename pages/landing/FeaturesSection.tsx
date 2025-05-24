@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Shrub, Handshake, TrendingUp, Flower } from 'lucide-react';
+import { Shrub, Handshake, TrendingUp } from 'lucide-react';
 import Card from '../../components/common/Card';
 
 const features = [

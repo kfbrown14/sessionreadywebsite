@@ -6,10 +6,10 @@ import { useLiveAPIContext } from '@/contexts/LiveAPIContext';
 import { ClientPersona, createNewPersona } from '@/lib/presets/agents'; // Updated import
 import { useClientPersonaStore, useUI, useUser } from '@/lib/state'; // Updated import
 import { clsx } from 'clsx';
-import React, { useEffect, useState, useRef } from 'react'; // Added React and useRef
+import { useEffect, useState, useRef } from 'react'; // Added useRef
 
 export default function Header() {
-  const { showUserConfig, setShowUserConfig, setShowAgentEdit } = useUI();
+  const { setShowUserConfig, setShowAgentEdit } = useUI();
   const { name } = useUser(); // Therapist's name
   const {
     currentPersona,

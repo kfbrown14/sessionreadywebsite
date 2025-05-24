@@ -1,41 +1,42 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Quote } from 'lucide-react';
-
-const testimonials = [
-  {
-    id: 1,
-    quote: "The Skill Garden approach transformed my confidence as a therapist. The AI client simulations felt incredibly realistic and prepared me for real-world scenarios.",
-    name: "Dr. Sarah Johnson",
-    role: "Clinical Psychologist",
-    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
-  },
-  {
-    id: 2,
-    quote: "As a professor, I've seen my students flourish using Therapy Grove. The platform's organic learning methodology aligns perfectly with how skills naturally develop.",
-    name: "Prof. Michael Chen",
-    role: "University Program Director",
-    avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600"
-  },
-  {
-    id: 3,
-    quote: "The Community Grove connected me with mentors who guided my development. I'm now part of a thriving network of supportive professionals.",
-    name: "Emma Rodriguez",
-    role: "Marriage & Family Therapist",
-    avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600"
-  }
-];
-
+// Testimonials component - temporarily disabled
 const Testimonials = () => {
+  // Commenting out Voices from the Grove section - keeping for later use
+  return null;
+  
+  /*
+  import { motion } from 'framer-motion';
+  import { useInView } from 'react-intersection-observer';
+  import { Quote } from 'lucide-react';
+
+  const testimonials = [
+    {
+      id: 1,
+      quote: "The Skill Garden approach transformed my confidence as a therapist. The AI client simulations felt incredibly realistic and prepared me for real-world scenarios.",
+      name: "Dr. Sarah Johnson",
+      role: "Clinical Psychologist",
+      avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      id: 2,
+      quote: "As a professor, I've seen my students flourish using Therapy Grove. The platform's organic learning methodology aligns perfectly with how skills naturally develop.",
+      name: "Prof. Michael Chen",
+      role: "University Program Director",
+      avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      id: 3,
+      quote: "The Community Grove connected me with mentors who guided my development. I'm now part of a thriving network of supportive professionals.",
+      name: "Emma Rodriguez",
+      role: "Marriage & Family Therapist",
+      avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600"
+    }
+  ];
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
-  // Commenting out Voices from the Grove section - keeping for later use
-  return null;
-  
-  /*
   return (
     <section className="py-20 bg-white" ref={ref}>
       <div className="container mx-auto px-4">

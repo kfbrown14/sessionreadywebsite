@@ -8,8 +8,7 @@ import {
   MalikAnxious,
   AikoGrieving,
   JordanTrauma,
-  ZahraDepression,
-  createNewPersona 
+  ZahraDepression
 } from './presets/agents'; // Now imports ClientPersona and new presets
 
 /**
