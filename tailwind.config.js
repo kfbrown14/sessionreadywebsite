@@ -13,34 +13,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        'midnight-blue': 'rgb(0, 18, 51)',
-        'accent-blue': 'rgb(161, 228, 242)',
-        'accent-green': 'rgb(168, 218, 181)',
-        'accent-red': '#ff4600',
-        // New nature-themed colors
-        sage: {
-          light: '#C4D4C0',
-          DEFAULT: '#7A9B76',
-          dark: '#4A6B46'
+        // Brand color system
+        primary: {
+          light: '#4A8FA3',
+          DEFAULT: '#174b5f',
+          dark: '#0F3A4A'
         },
-        lavender: {
-          light: '#E8E0F0',
-          DEFAULT: '#B8A3D1',
-          dark: '#7A5B9E'
+        secondary: {
+          light: '#5CC4D4',
+          DEFAULT: '#10a6bf',
+          dark: '#0C7A8E'
         },
-        earth: {
-          light: '#D4C3A3',
-          DEFAULT: '#8B7355',
-          dark: '#5C4A3A'
+        accent: {
+          light: '#B8E86D',
+          DEFAULT: '#9dde40',
+          dark: '#7AC22F'
         },
-        mist: '#F5F7FA',
-        storm: '#2D3748'
+        neutral: {
+          light: '#F5F5F5',
+          DEFAULT: '#ffffff',
+          dark: '#2f2d2e'
+        },
+        // Keep accent-red for mic button (specialized use)
+        'accent-red': '#ff4600'
       },
       fontFamily: {
-        'google-sans': ['Google Sans Display', 'sans-serif'],
-        'space-mono': ['Space Mono', 'monospace'],
-        'primary': ['Inter', 'sans-serif'],
-        'secondary': ['Playfair Display', 'serif']
+        'primary': ['Source Sans Pro', 'sans-serif'],
+        'secondary': ['Playfair Display', 'serif'],
+        'nunito': ['Nunito', 'sans-serif']
       },
       boxShadow: {
         'soft': '0 2px 20px rgba(0, 0, 0, 0.08)',

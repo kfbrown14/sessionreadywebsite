@@ -7,7 +7,7 @@ import { User } from './state'; // User is now the Therapist
 
 export const createSystemInstructions = (persona: ClientPersona, therapist: User) => {
   // Use the detailed clientProfile if available, otherwise fall back to personality
-  const personaDescription = persona.clientProfile || `This is a therapy training exercise for a student counselor. You are role-playing as a therapy client. Your name is ${persona.name}.
+  const personaDescription = persona.clientProfile || `You are role-playing as a therapy client. Your name is ${persona.name}.
 Your background and presenting issues are as follows:
 ${persona.personality}`;
 

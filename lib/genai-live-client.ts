@@ -16,7 +16,7 @@ import {
 } from '@google/genai';
 import EventEmitter from 'eventemitter3';
 import { DEFAULT_LIVE_API_MODEL } from './constants';
-import { difference } from 'lodash';
+import { difference } from '../utils/performance-light';
 import { base64ToArrayBuffer } from './utils';
 
 /**

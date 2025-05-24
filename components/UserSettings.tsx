@@ -64,7 +64,7 @@ export default function UserSettings() {
   return (
     <Modal onClose={() => setShowUserConfig(false)}>
       <div className="max-w-3xl">
-        <h2 className="font-secondary text-3xl font-bold text-earth-dark mb-4">
+        <h2 className="font-nunito text-3xl font-bold text-earth-dark mb-4">
           Welcome to Session Ready
         </h2>
         

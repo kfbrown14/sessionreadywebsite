@@ -1,84 +1,56 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
-import AnimatedLeaf from '../../components/common/AnimatedLeaf';
 
 export default function Hero() {
-  const [leaves, setLeaves] = useState<Array<{id: number, x: number, y: number, duration: number, delay: number}>>([]);
-
-  useEffect(() => {
-    // Generate more leaves and improve randomization
-    const leafArray = Array.from({ length: 12 }, (_, i) => ({
-      id: i,
-      x: Math.random() * window.innerWidth,
-      y: -50 - Math.random() * 200, // Stagger initial positions
-      duration: 15 + Math.random() * 25, // Longer durations for smoother movement
-      delay: Math.random() * 10 // More varied delays
-    }));
-    setLeaves(leafArray);
-
-    // Regenerate leaves periodically for continuous effect
-    const interval = setInterval(() => {
-      setLeaves(prev => [
-        ...prev.slice(-8), // Keep last 8 leaves
-        ...Array.from({ length: 4 }, (_, i) => ({ // Add 4 new leaves
-          id: prev.length + i,
-          x: Math.random() * window.innerWidth,
-          y: -50 - Math.random() * 200,
-          duration: 15 + Math.random() * 25,
-          delay: 0
-        }))
-      ]);
-    }, 10000); // Every 10 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  const navigate = useNavigate();
 
   return (
-    <section className="relative min-h-screen pt-20 overflow-hidden bg-gradient-to-br from-sage-light/50 via-lavender-light to-earth-light/30">
-      {/* Floating leaves background */}
-      {leaves.map(leaf => (
-        <AnimatedLeaf key={leaf.id} {...leaf} />
-      ))}
+    <section className="relative min-h-screen pt-11 overflow-hidden gradient-hero">
       
-      <div className="container mx-auto px-4 pt-16 pb-24 flex flex-col lg:flex-row items-center">
+      <div className="container mx-auto px-4 py-16 flex flex-col lg:flex-row items-center justify-center min-h-screen">
         <motion.div 
-          className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0 relative z-10"
+          className="lg:w-1/2 text-center mb-12 lg:mb-0 relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-secondary text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Practice Therapy,<br />
-            <span className="text-sage">Build Confidence</span>
+                     <h1 className="font-nunito text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            Immerse. Improve. Inspire<br />
+            <span className="text-primary">Practice That Matters.</span>
           </h1>
           
-          <p className="font-primary text-lg md:text-xl text-earth max-w-lg mx-auto lg:mx-0 mb-8">
-            The first training platform where therapists develop skills 
-            through organic practice in a nurturing digital environment.
+          <p className="font-primary text-lg md:text-xl text-primary max-w-lg mx-auto mb-8 text-center">
+            Shift from classroom theory to confident provider by training with realistic role-plays so you're ready from day one.
           </p>
           
           <div className="flex justify-center mb-12">
-            <Link to="/practice">
-              <Button variant="primary" size="lg">Start Practice Session</Button>
-            </Link>
+            <Button 
+              variant="primary" 
+              size="lg" 
+              className="bg-primary text-white hover:bg-primary-dark"
+              onClick={() => navigate('/early-access')}
+            >
+              Get Early Access
+            </Button>
           </div>
           
-          <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+          {/* Commenting out statistics section for later use
+          <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
             <div className="text-center">
-              <span className="block text-2xl md:text-3xl font-bold text-sage">10K+</span>
-              <span className="text-sm text-earth">Practice Sessions</span>
+              <span className="block text-2xl md:text-3xl font-bold text-primary">10K+</span>
+              <span className="text-sm text-primary-dark">Practice Sessions</span>
             </div>
             <div className="text-center">
-              <span className="block text-2xl md:text-3xl font-bold text-sage">200+</span>
-              <span className="text-sm text-earth">Scenarios</span>
+              <span className="block text-2xl md:text-3xl font-bold text-secondary">200+</span>
+              <span className="text-sm text-primary-dark">Scenarios</span>
             </div>
             <div className="text-center">
-              <span className="block text-2xl md:text-3xl font-bold text-sage">85%</span>
-              <span className="text-sm text-earth">Confidence Boost</span>
+              <span className="block text-2xl md:text-3xl font-bold text-accent-dark">85%</span>
+              <span className="text-sm text-primary-dark">Confidence Boost</span>
             </div>
           </div>
+          */}
         </motion.div>
         
         <motion.div 
@@ -88,9 +60,9 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.3 }}
         >
           <img 
-            src="https://images.pexels.com/photos/3280130/pexels-photo-3280130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-            alt="Therapist in a peaceful session"
-            className="rounded-2xl shadow-medium w-full max-w-lg mx-auto"
+            src="/session ready therapy training app.jpg" 
+            alt="Session Ready therapy training app"
+            className="rounded-2xl shadow-brand w-full max-w-lg mx-auto"
           />
         </motion.div>
       </div>

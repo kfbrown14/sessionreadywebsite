@@ -1,36 +1,428 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+/* Optimized Google Fonts with display=swap for better performance */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles for Session Ready */
+/* Base styles with modern defaults */
 @layer base {
   html {
     @apply scroll-smooth;
   }
   
   body {
-    @apply bg-white text-gray-900;
+    @apply bg-neutral text-neutral-dark font-primary antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-nunito font-semibold text-primary-dark;
+  }
+
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl md:text-4xl lg:text-5xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
+  h5 { @apply text-lg md:text-xl; }
+  h6 { @apply text-base md:text-lg; }
+
+  /* Improved focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-secondary ring-offset-2 ring-offset-neutral;
+  }
+
+  /* Smooth transitions for interactive elements */
+  a, button, input, textarea, select {
+    @apply transition-colors duration-200;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
+/* Enhanced component library */
 @layer components {
-  .btn-primary {
-    @apply bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors;
+  /* Button variants */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium font-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
-  
+
+  .btn-primary {
+    @apply btn bg-primary text-neutral hover:bg-primary-dark focus:ring-primary shadow-soft hover:shadow-medium;
+  }
+
+  .btn-secondary {
+    @apply btn bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-neutral focus:ring-secondary;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent text-neutral-dark hover:bg-accent-dark focus:ring-accent shadow-soft hover:shadow-medium;
+  }
+
+  .btn-outline {
+    @apply btn bg-transparent border-2 border-neutral-dark/20 text-neutral-dark hover:bg-neutral-dark hover:text-neutral focus:ring-neutral-dark/50;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-primary hover:bg-primary/10 focus:ring-primary/50;
+  }
+
+  /* Button sizes */
+  .btn-sm { @apply px-4 py-2 text-sm; }
+  .btn-lg { @apply px-8 py-4 text-lg; }
+  .btn-xl { @apply px-10 py-5 text-xl; }
+
+  /* Card components */
   .card {
-    @apply bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20;
+    @apply bg-neutral rounded-xl p-6 shadow-soft border border-primary-light/20;
+  }
+
+  .card-elevated {
+    @apply card shadow-medium hover:shadow-lg transition-shadow duration-300;
+  }
+
+  .card-glass {
+    @apply bg-neutral/80 backdrop-blur-sm rounded-xl p-6 border border-neutral/30 shadow-soft;
+  }
+
+  .card-brand {
+    @apply bg-gradient-to-br from-primary-light/10 to-secondary-light/10 border border-primary-light/30 rounded-xl p-6 shadow-soft;
+  }
+
+  /* Input components */
+  .input {
+    @apply w-full px-4 py-3 bg-neutral border border-primary-light/30 rounded-lg text-neutral-dark placeholder-primary/50 font-primary focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200;
+  }
+
+  .input-lg {
+    @apply input px-5 py-4 text-lg;
+  }
+
+  .textarea {
+    @apply input min-h-[120px] resize-y;
+  }
+
+  /* Form group */
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-primary-dark;
+  }
+
+  .form-error {
+    @apply text-sm text-red-500 mt-1;
+  }
+
+  /* Navigation components */
+  .nav-link {
+    @apply font-primary text-primary-dark hover:text-secondary transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-secondary-light/20;
+  }
+
+  .nav-link-active {
+    @apply nav-link text-secondary bg-secondary-light/20;
+  }
+
+  /* Status indicators */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-light/20 text-primary;
+  }
+
+  .badge-secondary {
+    @apply badge bg-secondary-light/20 text-secondary-dark;
+  }
+
+  .badge-accent {
+    @apply badge bg-accent-light/20 text-accent-dark;
+  }
+
+  /* Loading states */
+  .spinner {
+    @apply animate-spin rounded-full border-4 border-primary-light border-t-primary;
+  }
+
+  .pulse-dot {
+    @apply animate-pulse w-2 h-2 bg-secondary rounded-full;
+  }
+
+  /* Text utilities */
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text text-transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Practice Session Controls (modernized from legacy styles) */
+  .control-tray {
+    @apply fixed bottom-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 pb-4 z-50;
+  }
+
+  .actions-nav {
+    @apply flex items-center gap-2 px-4 py-2 bg-neutral/90 backdrop-blur-sm rounded-full shadow-soft border border-primary-light/30;
+  }
+
+  .actions-nav.disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+
+  .action-button {
+    @apply flex items-center justify-center w-12 h-12 rounded-full text-primary-dark transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: theme('colors.primary.light/20');
+  }
+
+  .action-button:hover:not(:disabled) {
+    @apply bg-primary-light/40 text-primary-dark shadow-soft;
+  }
+
+  .action-button.connected {
+    @apply bg-primary text-neutral shadow-lg;
+  }
+
+  .action-button.connected:hover {
+    @apply bg-primary-dark shadow-medium;
+  }
+
+  .mic-button {
+    @apply bg-red-500 text-neutral hover:bg-red-600;
+    position: relative;
+  }
+
+  .mic-button:disabled {
+    @apply bg-gray-300 text-gray-500;
+  }
+
+  /* Volume visualization effect for mic button */
+  .mic-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: theme('colors.red.500/30');
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .mic-button:not(:disabled):hover::before {
+    opacity: 1;
+    animation: pulse 1s infinite;
+  }
+
+  .connect-toggle {
+    @apply bg-primary text-neutral hover:bg-primary-dark;
+  }
+
+  .connect-toggle:not(.connected) {
+    @apply bg-secondary hover:bg-secondary-dark;
+  }
+
+  .connection-container {
+    @apply flex flex-col items-center gap-1;
+  }
+
+  .connection-container .text-indicator {
+    @apply text-xs font-medium text-primary px-3 py-1 bg-neutral/80 rounded-full shadow-soft min-w-max;
+  }
+
+  .connection-container.connecting .text-indicator {
+    @apply text-secondary animate-pulse;
+  }
+
+  .connection-container:not(.connected) .text-indicator {
+    @apply text-primary/60;
+  }
+
+  /* Pause state styling */
+  .action-button.connected.pause-active {
+    @apply bg-yellow-500 hover:bg-yellow-600;
+  }
+
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
+    .control-tray {
+      @apply pb-6;
+    }
+    
+    .actions-nav {
+      @apply px-3 py-2 gap-1;
+    }
+    
+    .action-button {
+      @apply w-10 h-10;
+    }
   }
 }
 
+/* Enhanced utility classes */
 @layer utilities {
-  .gradient-nature {
-    @apply bg-gradient-to-br from-sage-light/50 via-lavender-light to-earth-light/30;
+  /* Brand-themed gradients */
+  .gradient-brand {
+    @apply bg-gradient-to-br from-primary/60 via-secondary/40 to-accent/30;
   }
   
-  .gradient-sage {
-    @apply bg-gradient-to-br from-sage/80 to-sage-dark/90;
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary/80 to-primary-dark/90;
+  }
+
+  .gradient-secondary {
+    @apply bg-gradient-to-br from-secondary-light/60 to-secondary/80;
+  }
+
+  .gradient-accent {
+    @apply bg-gradient-to-br from-accent-light/60 to-accent/80;
+  }
+
+  .gradient-hero {
+    @apply bg-gradient-to-br from-primary/40 via-secondary/30 to-accent/20;
+  }
+
+  .gradient-cta {
+    @apply bg-gradient-to-r from-primary via-secondary-dark to-accent-dark;
+  }
+
+  /* Glass morphism effects */
+  .glass {
+    @apply bg-neutral/20 backdrop-blur-sm border border-neutral/30;
+  }
+
+  .glass-primary {
+    @apply bg-primary-light/20 backdrop-blur-sm border border-primary-light/30;
+  }
+
+  /* Enhanced shadows for depth */
+  .shadow-brand {
+    box-shadow: 0 4px 20px rgba(23, 75, 95, 0.15);
+  }
+
+  .shadow-secondary {
+    box-shadow: 0 4px 20px rgba(16, 166, 191, 0.15);
+  }
+
+  .shadow-accent {
+    box-shadow: 0 4px 20px rgba(157, 222, 64, 0.15);
+  }
+
+  /* Scroll styles */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.primary.light') theme('colors.neutral');
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-neutral;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-primary-light rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+
+  /* Interactive states */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+
+  /* Content layouts */
+  .prose-brand {
+    @apply prose prose-lg prose-stone max-w-none;
+    --tw-prose-headings: theme('colors.primary.dark');
+    --tw-prose-body: theme('colors.neutral.dark');
+    --tw-prose-links: theme('colors.secondary.dark');
+    --tw-prose-bold: theme('colors.primary.dark');
+    --tw-prose-quotes: theme('colors.secondary.dark');
+    --tw-prose-quote-borders: theme('colors.primary.light');
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply text-black bg-white;
   }
 } 

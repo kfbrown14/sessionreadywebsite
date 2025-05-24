@@ -222,10 +222,10 @@ const Universities = () => {
               Join leading institutions in revolutionizing counselor education.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="border-white text-white hover:bg-white hover:text-sage">
+              <Button variant="secondary" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
                 Schedule Demo
               </Button>
-              <Button variant="primary" size="lg" className="bg-white text-sage hover:bg-sage-light hover:text-white">
+              <Button variant="primary" size="lg" className="bg-white text-primary hover:bg-primary-light hover:text-white">
                 Download Brochure
               </Button>
             </div>

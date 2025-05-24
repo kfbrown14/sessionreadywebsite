@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
-import cn from 'classnames';
+import { clsx } from 'clsx';
 
 import { memo, ReactNode, useEffect, useRef, useState } from 'react';
 import { AudioRecorder } from '../../../lib/audio-recorder';
@@ -121,9 +121,9 @@ function ControlTray({ children, onEndSession }: ControlTrayProps) {
   return (
     <>
     <section className="control-tray">
-      <nav className={cn('actions-nav', { disabled: !connected && !connecting })}>
+      <nav className={clsx('actions-nav', { disabled: !connected && !connecting })}>
         <button
-          className={cn('action-button mic-button', { disabled: connecting || paused })}
+          className={clsx('action-button mic-button', { disabled: connecting || paused })}
           onClick={() => setMuted(!muted)}
           title={muted ? 'Unmute microphone' : 'Mute microphone'}
           disabled={connecting || paused}
@@ -137,7 +137,7 @@ function ControlTray({ children, onEndSession }: ControlTrayProps) {
           
         {/* Chat toggle button */}
         <button
-          className={cn('action-button', { 'connected': showChat, disabled: connecting })}
+          className={clsx('action-button', { 'connected': showChat, disabled: connecting })}
           onClick={() => setShowChat(!showChat)}
           title="Toggle chat interface"
           disabled={connecting}
@@ -150,7 +150,7 @@ function ControlTray({ children, onEndSession }: ControlTrayProps) {
         {/* Pause button - only show when connected */}
         {connected && (
           <button
-            className={cn('action-button', { 'connected': paused })}
+            className={clsx('action-button', { 'connected': paused })}
             onClick={handlePauseToggle}
             title={paused ? "Resume AI responses" : "Pause AI responses"}
           >
@@ -163,11 +163,11 @@ function ControlTray({ children, onEndSession }: ControlTrayProps) {
         {children}
       </nav>
 
-      <div className={cn('connection-container', { connected, connecting })}>
+      <div className={clsx('connection-container', { connected, connecting })}>
         <div className="connection-button-container">
           <button
             ref={connectButtonRef}
-            className={cn('action-button connect-toggle', { connected, connecting })}
+            className={clsx('action-button connect-toggle', { connected, connecting })}
             onClick={connected ? disconnect : handleConnect}
             disabled={connecting}
           >

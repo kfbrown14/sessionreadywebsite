@@ -5,7 +5,7 @@
 import { useLiveAPIContext } from '@/contexts/LiveAPIContext';
 import { ClientPersona, createNewPersona } from '@/lib/presets/agents'; // Updated import
 import { useClientPersonaStore, useUI, useUser } from '@/lib/state'; // Updated import
-import c from 'classnames';
+import { clsx } from 'clsx';
 import React, { useEffect, useState, useRef } from 'react'; // Added React and useRef
 
 export default function Header() {
@@ -98,7 +98,7 @@ export default function Header() {
                   key={p.id}
                   onClick={() => changePersona(p)}
                   style={{ display: 'block', width: '100%', textAlign: 'left', padding: '5px', background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
-                  className={c({ 'active-persona': currentPersona?.id === p.id })}
+                  className={clsx({ 'active-persona': currentPersona?.id === p.id })}
                 >
                   {p.name}
                 </button>
@@ -109,7 +109,7 @@ export default function Header() {
                   key={p.id}
                   onClick={() => changePersona(p)}
                   style={{ display: 'block', width: '100%', textAlign: 'left', padding: '5px', background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
-                  className={c({ 'active-persona': currentPersona?.id === p.id })}
+                  className={clsx({ 'active-persona': currentPersona?.id === p.id })}
                 >
                   {p.name}
                 </button>

@@ -1,40 +1,32 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Sprout, Users, Brain, Flower } from 'lucide-react';
+import { Shrub, Handshake, TrendingUp, Flower } from 'lucide-react';
 import Card from '../../components/common/Card';
 
 const features = [
   {
     id: 1,
-    icon: <Sprout className="w-12 h-12" />,
-    title: 'Skill Garden',
-    description: 'Cultivate core therapeutic competencies through organic progression paths.',
-    color: 'bg-sage-light/20 text-sage',
+    icon: <Shrub className="w-12 h-12" />,
+    title: 'Grounded Confidence',
+    description: 'Refine core techniques with adaptive drills and simulations, so you enter sessions confident, capable, and ready to provide exceptional care.',
+    color: 'bg-secondary-light/20 text-secondary-light',
     href: '/features#skill-garden'
   },
   {
     id: 2,
-    icon: <Brain className="w-12 h-12" />,
-    title: 'Practice Greenhouse',
-    description: 'Safe environment for skill development with AI-powered client simulations.',
-    color: 'bg-lavender-light/50 text-lavender-dark',
+    icon: <Handshake className="w-12 h-12" />,
+    title: 'Strong Client Relationships',
+    description: 'Develop cultural competence and adaptability through diverse client scenarios so you can foster trust and rapport from the very first moment.',
+    color: 'bg-secondary-light/20 text-secondary-light',
     href: '/features#practice-greenhouse'
   },
   {
     id: 3,
-    icon: <Users className="w-12 h-12" />,
-    title: 'Community Grove',
-    description: 'Connect with peers and mentors in our supportive learning ecosystem.',
-    color: 'bg-earth-light/20 text-earth',
+    icon: <TrendingUp className="w-12 h-12" />,
+    title: 'Measured Skill Mastery',
+    description: 'Track your development with performance analytics dashboards, then share clear growth reports with faculty, supervisors, and potential employers.',
+    color: 'bg-secondary-light/20 text-secondary-light',
     href: '/features#community-grove'
-  },
-  {
-    id: 4,
-    icon: <Flower className="w-12 h-12" />,
-    title: 'Creative Meadow',
-    description: 'Integrate arts, nature, and holistic approaches into your practice.',
-    color: 'bg-lavender-dark/20 text-lavender-dark',
-    href: '/features#creative-meadow'
   }
 ];
 
@@ -53,13 +45,10 @@ const FeaturesSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-secondary text-3xl md:text-4xl font-bold mb-6">Your Therapeutic Journey</h2>
-          <p className="text-lg text-earth">
-            Discover the organic pathways to becoming a confident, skilled therapist
-          </p>
+          <h2 className="font-nunito text-3xl md:text-4xl font-bold mb-6">Key Outcomes</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.id}
@@ -71,15 +60,8 @@ const FeaturesSection = () => {
                 <div className={`${feature.color} p-4 rounded-full mb-6`}>
                   {feature.icon}
                 </div>
-                <h3 className="font-secondary text-xl font-bold mb-3">{feature.title}</h3>
+                <h3 className="font-nunito text-xl font-bold mb-3">{feature.title}</h3>
                 <p className="text-earth mb-6 flex-grow">{feature.description}</p>
-                <a 
-                  href={feature.href}
-                  className="inline-flex items-center text-sage font-semibold hover:text-sage-dark transition-colors group"
-                >
-                  Explore 
-                  <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
               </Card>
             </motion.div>
           ))}

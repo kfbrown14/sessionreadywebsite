@@ -71,7 +71,7 @@ const Community = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="font-secondary text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="font-nunito text-4xl md:text-5xl font-bold mb-6">
                 Join Our Thriving Community
               </h1>
               <p className="text-lg text-earth mb-8">
@@ -108,7 +108,7 @@ const Community = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-secondary text-3xl font-bold mb-4">
+            <h2 className="font-nunito text-3xl font-bold mb-4">
               Community Features
             </h2>
             <p className="text-earth">
@@ -128,7 +128,7 @@ const Community = () => {
                 <div className="w-16 h-16 rounded-full bg-sage-light/20 text-sage flex items-center justify-center mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="font-secondary text-2xl font-bold mb-4">{feature.title}</h3>
+                <h3 className="font-nunito text-2xl font-bold mb-4">{feature.title}</h3>
                 <p className="text-earth">{feature.description}</p>
               </motion.div>
             ))}
@@ -146,7 +146,7 @@ const Community = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-secondary text-3xl font-bold mb-4">
+            <h2 className="font-nunito text-3xl font-bold mb-4">
               Community Activities
             </h2>
             <p className="text-earth">
@@ -167,7 +167,7 @@ const Community = () => {
                 <div className="w-12 h-12 rounded-full bg-sage-light/20 text-sage flex items-center justify-center mx-auto mb-4">
                   {activity.icon}
                 </div>
-                <h3 className="font-secondary text-xl font-bold mb-2">{activity.title}</h3>
+                <h3 className="font-nunito text-xl font-bold mb-2">{activity.title}</h3>
                 <p className="text-earth">{activity.description}</p>
               </motion.div>
             ))}
@@ -244,17 +244,17 @@ const Community = () => {
       <section className="py-20 bg-gradient-to-br from-sage/80 to-sage-dark/90 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-secondary text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="font-nunito text-3xl md:text-4xl font-bold mb-6">
               Ready to Join Our Community?
             </h2>
             <p className="text-lg mb-8 opacity-90">
               Connect with fellow therapists and start your journey of growth together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="border-white text-white hover:bg-white hover:text-sage">
+              <Button variant="secondary" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
                 Join Now
               </Button>
-              <Button variant="primary" size="lg" className="bg-white text-sage hover:bg-sage-light hover:text-white">
+              <Button variant="primary" size="lg" className="bg-white text-primary hover:bg-primary-light hover:text-white">
                 Learn More
               </Button>
             </div>

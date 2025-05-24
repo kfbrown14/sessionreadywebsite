@@ -23,8 +23,8 @@ const Button = ({
   const baseClasses = "font-primary font-semibold rounded-full transition-all inline-flex items-center justify-center";
   
   const variantClasses = {
-    primary: `bg-sage text-white hover:bg-sage-dark shadow-soft hover:shadow-medium ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`,
-    secondary: `bg-transparent text-sage border-2 border-sage hover:bg-sage hover:text-white ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`
+    primary: `bg-primary text-white hover:bg-primary-dark shadow-soft hover:shadow-medium ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`,
+    secondary: `bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`
   };
   
   const sizeClasses = {

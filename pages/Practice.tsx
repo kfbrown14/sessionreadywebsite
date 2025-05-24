@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, memo, lazy, Suspense, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { debounce } from 'lodash';
+import { debounce } from '../utils/performance-light';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLiveAPIContext } from '../contexts/LiveAPIContext';
 import { useUI, useUser, useClientPersonaStore } from '../lib/state';
@@ -42,7 +42,7 @@ const PracticeHeader = memo<PracticeHeaderProps>(({ onNavigateHome, onOpenSettin
         <span className="hidden sm:inline font-medium">Back to Home</span>
       </motion.button>
       
-      <h1 className="font-secondary text-xl md:text-2xl font-bold text-earth-dark">Practice Session</h1>
+              <h1 className="font-nunito text-xl md:text-2xl font-bold text-earth-dark">Practice Session</h1>
       
       <motion.button
         onClick={onOpenSettings}
@@ -89,7 +89,7 @@ const PersonaButton = memo<PersonaButtonProps>(({ persona, isSelected, onSelect 
       />
       )}
       <div className="flex-1">
-        <h3 className="font-secondary text-lg font-semibold text-earth-dark mb-2">{persona.name}</h3>
+        <h3 className="font-nunito text-lg font-semibold text-earth-dark mb-2">{persona.name}</h3>
         {/* Show description if available, otherwise fall back to personality */}
         <p className="font-primary text-sm text-earth line-clamp-3">
           {persona.description || persona.personality}
@@ -181,7 +181,7 @@ const ClientSelectorModal = memo<ClientSelectorModalProps>(({
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
         >
-          <h2 id="client-selector-title" className="font-secondary text-3xl font-bold text-earth-dark mb-2">
+          <h2 id="client-selector-title" className="font-nunito text-3xl font-bold text-earth-dark mb-2">
             {hasSelectedBefore ? 'Choose a New Persona from the Waiting Room' : 'Select a Client Persona'}
           </h2>
           {hasSelectedBefore && (
@@ -241,7 +241,7 @@ const ClientSelectorModal = memo<ClientSelectorModalProps>(({
             )}
             <motion.button
               onClick={onClose}
-              className="px-8 py-3 bg-sage text-white rounded-full font-primary font-semibold hover:bg-sage-dark transition-colors shadow-soft hover:shadow-medium"
+              className="px-8 py-3 bg-primary text-white rounded-full font-primary font-semibold hover:bg-primary-dark transition-colors shadow-soft hover:shadow-medium"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -360,7 +360,7 @@ function Practice() {
         <div className="container mx-auto">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-medium p-8 mb-6">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="font-secondary text-2xl font-bold text-earth-dark">
+              <h2 className="font-nunito text-2xl font-bold text-earth-dark">
                 Session with {currentPersona.name}
               </h2>
               {connected && (

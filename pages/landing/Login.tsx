@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';  
 import { z } from 'zod';
 import { Link, useNavigate } from 'react-router-dom';
-import { Leaf, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import Navigation from '../../components/common/Navigation';
 import Button from '../../components/common/Button';
 
@@ -48,11 +48,15 @@ const Login = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="text-center mb-8">
-                <Link to="/" className="inline-flex items-center gap-2 text-sage-dark mb-4">
-                  <Leaf size={32} className="text-sage" />
-                  <span className="font-secondary text-2xl font-bold">Therapy Grove</span>
+                <Link to="/" className="inline-flex items-center gap-2 text-primary-dark mb-4">
+                  <img 
+                    src="/session-ready-logo.png" 
+                    alt="Session Ready Logo" 
+                    className="w-8 h-8 object-contain"
+                  />
+                  <span className="font-secondary text-2xl font-bold">Session Ready</span>
                 </Link>
-                <h1 className="font-secondary text-2xl font-bold mb-2">Welcome Back</h1>
+                <h1 className="font-nunito text-2xl font-bold mb-2">Welcome Back</h1>
                 <p className="text-earth">Continue your growth journey</p>
               </div>
 

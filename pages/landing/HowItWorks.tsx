@@ -48,7 +48,7 @@ const HowItWorks = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-secondary text-3xl md:text-4xl font-bold mb-6 text-earth-dark">Your Growth Journey</h2>
+          <h2 className="font-nunito text-3xl md:text-4xl font-bold mb-6 text-earth-dark">Your Growth Journey</h2>
           <p className="text-lg text-earth">
             Four natural stages of therapeutic skill development
           </p>
@@ -73,7 +73,7 @@ const HowItWorks = () => {
                     <div className={`${step.color} p-2 rounded-lg`}>
                       {step.icon}
                     </div>
-                    <h3 className="font-secondary text-xl font-bold text-earth-dark">{step.title}</h3>
+                    <h3 className="font-nunito text-xl font-bold text-earth-dark">{step.title}</h3>
                   </div>
                   <p className="text-earth">{step.description}</p>
                 </div>
@@ -109,7 +109,7 @@ const HowItWorks = () => {
                     <div className={`${step.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4`}>
                       {step.icon}
                     </div>
-                    <h3 className="font-secondary text-xl font-bold mb-3 text-earth-dark">{step.title}</h3>
+                    <h3 className="font-nunito text-xl font-bold mb-3 text-earth-dark">{step.title}</h3>
                     <p className="text-earth text-sm">{step.description}</p>
                   </div>
                 </motion.div>

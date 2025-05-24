@@ -50,7 +50,7 @@ const SkillGarden = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="font-secondary text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="font-nunito text-4xl md:text-5xl font-bold mb-6">
               Cultivate Your Therapeutic Skills
             </h1>
             <p className="text-lg text-earth mb-8">
