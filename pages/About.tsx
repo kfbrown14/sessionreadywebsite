@@ -189,7 +189,7 @@ const About = () => {
 
                   <StoryCard title="How We Built It" variants={cardVariants}>
                     <p className="font-primary text-earth leading-relaxed text-lg">
-                      For the first 14+ years of my career, I worked in technology and product innovation. But once I became a therapist myself, I knew I had to combine my clinical training with my innovative approach to technology. I set out to create the tools I always wished I had access to during my training. By harnessing AI-driven simulations, adaptive scenarios, and real-time insights, I crafted a platform that offers focused, repeatable practice. We mirror the full arc of a 50+ minute session and deliver feedback that transforms students into skilled practitioners.
+                      For the first 14+ years of my career, I worked in technology and product innovation. But once I started training as a future therapist, I knew I had to combine my clinical training with my innovative approach to technology. I set out to create the tools I always wished I had access to during my training. By harnessing AI-driven simulations, adaptive scenarios, and real-time insights, I crafted a platform that offers focused, repeatable practice. We mirror the full arc of a 50+ minute session and deliver feedback that transforms students into skilled practitioners.
                     </p>
                   </StoryCard>
 
