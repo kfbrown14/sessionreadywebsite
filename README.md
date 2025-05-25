@@ -19,20 +19,96 @@ This project is a [React](https://react.dev/) application built with [Vite](http
 *   **Safe Learning Environment**: Practice and refine therapeutic communication skills without the pressure and risks of real-world client interactions.
 *   **Responsive Design**: Access the platform on various devices thanks to a responsive user interface.
 
+## Development Setup
 
-# Run and deploy your AI Studio app
+**Prerequisites:** Node.js 18+
 
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd session-ready-gemini
+   ```
 
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This contains everything you need to run your app locally.
+3. **Set up environment variables:**
+   Create a `.env.local` file in the root directory with the following variables:
+   ```
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   VITE_GEMINI_API_KEY=your_gemini_api_key
+   ```
 
-## Run Locally
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-**Prerequisites:**  Node.js
+5. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
+## Deployment to Netlify
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+This project is configured for easy deployment to Netlify through GitHub.
+
+### Automatic Deployment Setup
+
+1. **Push to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Connect to Netlify:**
+   - Go to [Netlify](https://netlify.com) and sign in
+   - Click "New site from Git"
+   - Choose GitHub and select your repository
+   - Netlify will automatically detect the build settings from `netlify.toml`
+
+3. **Configure Environment Variables:**
+   In your Netlify site dashboard, go to:
+   - Site settings → Environment variables
+   - Add the following variables:
+     ```
+     VITE_SUPABASE_URL=your_supabase_project_url
+     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+     VITE_GEMINI_API_KEY=your_gemini_api_key
+     ```
+
+4. **Deploy:**
+   - Netlify will automatically build and deploy your site
+   - Future pushes to the main branch will trigger automatic deployments
+
+### Build Configuration
+
+The project includes:
+- `netlify.toml` - Netlify configuration with build settings and redirects
+- `public/_redirects` - SPA routing support
+- Optimized Vite build configuration for production
+- Automatic code splitting and asset optimization
+
+### Environment Variables Required
+
+- `VITE_SUPABASE_URL` - Your Supabase project URL
+- `VITE_SUPABASE_ANON_KEY` - Your Supabase anonymous key  
+- `VITE_GEMINI_API_KEY` - Your Google Gemini API key
+
+### Production Features
+
+- Practice page is automatically hidden in production (only visible in development)
+- Optimized bundle splitting for better performance
+- Asset caching and compression
+- Console logs removed in production builds
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run analyze` - Analyze bundle size

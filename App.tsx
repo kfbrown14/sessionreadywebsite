@@ -71,7 +71,8 @@ function App() {
         <Suspense fallback={<PageLoadingFallback />}>
           <Routes>
             <Route path="/" element={<Landing />} />
-            <Route path="/practice" element={<Practice />} />
+            {/* Only show practice route in development */}
+            {import.meta.env.DEV && <Route path="/practice" element={<Practice />} />}
             <Route path="/early-access" element={<EarlyAccess />} />
             <Route path="/about" element={<About />} />
             <Route path="/features" element={<Features />} />
