@@ -38,10 +38,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen pt-11 overflow-hidden gradient-hero" role="banner" aria-label="Hero section">
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[calc(100vh-100px)]">
+    <section className="relative min-h-[calc(100vh-80px)] pt-20 overflow-hidden gradient-hero" role="banner" aria-label="Hero section">
+      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
         <motion.div 
-          className="text-center max-w-2xl mb-12"
+          className="text-center max-w-2xl mb-12 mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}

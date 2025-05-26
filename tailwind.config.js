@@ -2,6 +2,7 @@
 export default {
   content: [
     "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./contexts/**/*.{js,ts,jsx,tsx}",
@@ -9,6 +10,18 @@ export default {
     "./lib/**/*.{js,ts,jsx,tsx}",
     "./App.tsx",
     "./index.tsx"
+  ],
+  safelist: [
+    'font-semibold',
+    'text-primary',
+    'hover:text-secondary',
+    'bg-primary',
+    'hover:bg-primary-dark',
+    'transform',
+    'transition-all',
+    'duration-200',
+    'hover:-translate-y-0.5',
+    'hover:shadow-lg'
   ],
   theme: {
     extend: {
