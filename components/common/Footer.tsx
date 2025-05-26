@@ -16,7 +16,7 @@ const Footer = () => {
               <span className="font-nunito text-xl font-bold">Session Ready</span>
             </Link>
             <p className="text-primary mb-6 max-w-xs">
-              Our mission is to empower therapists to provide transformative care through authentic, skill focused practice.
+              Our mission is to empower therapists to provide transformative care through authentic, skill-focused practice.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-primary hover:text-secondary transition-colors hidden" aria-label="Facebook">

@@ -20,44 +20,44 @@ const Contact = () => {
 
     return () => {
       // Cleanup: remove script when component unmounts
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
   return (
-    <div className="min-h-screen bg-mist">
+    <div className="min-h-screen">
       <Navigation />
-      
-      {/* Hero Section */}
-      <section className="pt-32">
-        <motion.div {...fadeInUp}>
-          <h1 className="font-nunito text-4xl md:text-5xl font-bold text-earth-dark text-center">
-            Get in Touch
-          </h1>
-        </motion.div>
-      </section>
-
-      {/* Tally Survey Section */}
-      <section>
-        <motion.div 
-          className="ml-32"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        >
-          <iframe 
-            data-tally-src="https://tally.so/embed/w25QXp?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-            loading="lazy" 
-            width="100%" 
-            height="767" 
-            frameBorder="0" 
-            marginHeight={0} 
-            marginWidth={0} 
-            title="Get in Touch"
-          />
-        </motion.div>
-      </section>
-
+      <div className="pt-32 pb-20 bg-gradient-to-br from-sage-light/20 to-lavender-light/30">
+        <div className="container mx-auto px-4">
+          <motion.div className="text-center mb-8" {...fadeInUp}>
+            <h1 className="font-nunito text-4xl md:text-5xl font-bold mb-4 text-primary-dark">
+              Get Early Access
+            </h1>
+          </motion.div>
+          
+          <motion.div 
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <iframe 
+                data-tally-src="https://tally.so/embed/mYyN5d?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                loading="lazy" 
+                width="100%" 
+                height="846" 
+                frameBorder="0" 
+                marginHeight={0} 
+                marginWidth={0} 
+                title="Email Collect-Sign Up Beta Testers"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </div>
       <Footer />
     </div>
   );

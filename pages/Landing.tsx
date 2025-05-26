@@ -1,5 +1,6 @@
 import Navigation from '../components/common/Navigation';
 import Hero from './landing/Hero';
+import Vision from './landing/Vision';
 import FeaturesSection from './landing/FeaturesSection';
 import Testimonials from './landing/Testimonials';
 import CTA from './landing/CTA';
@@ -10,6 +11,7 @@ export default function Landing() {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
+      <Vision />
       <FeaturesSection />
       <Testimonials />
       <CTA />

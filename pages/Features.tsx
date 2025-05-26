@@ -68,8 +68,8 @@ const Features = () => {
             {...fadeInUp}
             animate={inView ? fadeInUp.animate : fadeInUp.initial}
           >
-            <h2 className="font-nunito text-2xl md:text-3xl font-bold mb-4">Everything You Need to Succeed</h2>
-            <p className="text-earth max-w-2xl mx-auto">Comprehensive tools for therapeutic skill development, practice, and progress tracking.</p>
+            <h2 className="font-nunito text-2xl md:text-3xl font-bold mb-4">Build Therapeutic Skills, Deliver Impact</h2>
+            <p className="text-earth max-w-2xl mx-auto">Adaptive simulations, skill exercises, and data-driven insights to shape you into a skilled therapist.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -101,7 +101,7 @@ const Features = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-nunito text-2xl md:text-3xl font-bold mb-4">
-              Ready to Experience Session Ready?
+              Get Started with Therapist Training Simulations
             </h2>
             <p className="font-primary text-base mb-6 opacity-90">
               Join thousands of therapists developing their skills in our supportive digital ecosystem.

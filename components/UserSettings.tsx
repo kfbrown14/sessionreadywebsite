@@ -6,38 +6,30 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
 import { useUI, useUser } from '@/lib/state';
+import { useNavigate } from 'react-router-dom';
 
-// Common therapeutic modalities
 const THERAPEUTIC_MODALITIES = [
-  { id: 'cbt', label: 'Cognitive Behavioral Therapy (CBT)', category: 'Cognitive' },
-  { id: 'dbt', label: 'Dialectical Behavior Therapy (DBT)', category: 'Behavioral' },
-  { id: 'psychodynamic', label: 'Psychodynamic Therapy', category: 'Psychoanalytic' },
-  { id: 'humanistic', label: 'Humanistic/Person-Centered', category: 'Humanistic' },
-  { id: 'gestalt', label: 'Gestalt Therapy', category: 'Humanistic' },
-  { id: 'emdr', label: 'EMDR', category: 'Trauma' },
-  { id: 'ifs', label: 'Internal Family Systems (IFS)', category: 'Integrative' },
-  { id: 'act', label: 'Acceptance & Commitment Therapy (ACT)', category: 'Behavioral' },
-  { id: 'solution-focused', label: 'Solution-Focused Brief Therapy', category: 'Brief' },
-  { id: 'narrative', label: 'Narrative Therapy', category: 'Postmodern' },
-  { id: 'somatic', label: 'Somatic Therapy', category: 'Body-Based' },
-  { id: 'art', label: 'Art Therapy', category: 'Expressive' },
-  { id: 'play', label: 'Play Therapy', category: 'Expressive' },
-  { id: 'family-systems', label: 'Family Systems Therapy', category: 'Systemic' },
-  { id: 'mindfulness', label: 'Mindfulness-Based Therapy', category: 'Mind-Body' },
+  { id: 'cbt', label: 'Cognitive Behavioral Therapy (CBT)' },
+  { id: 'dbt', label: 'Dialectical Behavior Therapy (DBT)' },
+  { id: 'psychodynamic', label: 'Psychodynamic Therapy' },
+  { id: 'humanistic', label: 'Humanistic/Person-Centered' },
+  { id: 'gestalt', label: 'Gestalt Therapy' },
+  { id: 'emdr', label: 'EMDR' },
+  { id: 'ifs', label: 'Internal Family Systems (IFS)' },
+  { id: 'act', label: 'Acceptance & Commitment Therapy (ACT)' },
+  { id: 'solution-focused', label: 'Solution-Focused Brief Therapy' },
+  { id: 'narrative', label: 'Narrative Therapy' },
+  { id: 'somatic', label: 'Somatic Therapy' },
+  { id: 'art', label: 'Art Therapy' },
+  { id: 'play', label: 'Play Therapy' },
+  { id: 'family-systems', label: 'Family Systems Therapy' },
+  { id: 'mindfulness', label: 'Mindfulness-Based Therapy' },
 ];
-
-// Group modalities by category
-const groupedModalities = THERAPEUTIC_MODALITIES.reduce((acc, modality) => {
-  if (!acc[modality.category]) {
-    acc[modality.category] = [];
-  }
-  acc[modality.category].push(modality);
-  return acc;
-}, {} as Record<string, typeof THERAPEUTIC_MODALITIES>);
 
 export default function UserSettings() {
   const { name, info, setName, setInfo } = useUser();
   const { setShowUserConfig } = useUI();
+  const navigate = useNavigate();
   const [selectedModalities, setSelectedModalities] = useState<string[]>(() => {
     // Parse existing info to extract modalities if any
     return info ? info.split(',').map(m => m.trim()).filter(Boolean) : [];
@@ -51,6 +43,8 @@ export default function UserSettings() {
       .join(', ');
     setInfo(modalitiesString);
     setShowUserConfig(false);
+    // Navigate to practice page which will show the client persona modal
+    navigate('/practice');
   }
 
   function toggleModality(modalityId: string) {
@@ -85,7 +79,7 @@ export default function UserSettings() {
 
           <div>
             <label className="block font-primary text-earth-dark font-medium mb-2" htmlFor="user-name">
-              Your name
+              Your name <span className="text-earth/50 text-sm font-normal">(optional)</span>
             </label>
             <input
               id="user-name"
@@ -95,7 +89,6 @@ export default function UserSettings() {
               placeholder="What do you like to be called?"
               className="w-full px-5 py-3 bg-mist rounded-xl text-earth-dark placeholder-earth/50 font-primary text-base focus:outline-none focus:ring-2 focus:ring-sage focus:bg-white transition-colors"
               autoComplete="name"
-              autoFocus
             />
           </div>
 
@@ -107,63 +100,43 @@ export default function UserSettings() {
               Select all that apply to your practice approach:
             </p>
             
-            <div className="max-h-64 overflow-y-auto pr-2 -mr-2 space-y-4">
-              {Object.entries(groupedModalities).map(([category, modalities]) => (
-                <div key={category}>
-                  <h4 className="font-primary text-sm font-semibold text-sage-dark mb-2">
-                    {category}
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {modalities.map(modality => (
-                      <motion.label
-                        key={modality.id}
+            <div className="max-h-64 overflow-y-auto pr-2 -mr-2 space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {THERAPEUTIC_MODALITIES.map(modality => (
+                  <motion.label
+                    key={modality.id}
+                    className={`
+                      flex flex-row items-start gap-3 p-3 rounded-xl cursor-pointer transition-all
+                      ${selectedModalities.includes(modality.id)
+                        ? 'bg-sage/20 border-2 border-sage shadow-md'
+                        : 'bg-mist hover:bg-lavender-light/30 border-2 border-transparent'
+                      }
+                    `}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex-shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={selectedModalities.includes(modality.id)}
+                        onChange={() => toggleModality(modality.id)}
                         className={`
-                          flex items-center p-3 rounded-xl cursor-pointer transition-all
+                          w-5 h-5 rounded border-2 mt-0.5
                           ${selectedModalities.includes(modality.id)
-                            ? 'bg-sage-light border-2 border-sage text-earth-dark'
-                            : 'bg-mist hover:bg-lavender-light/30 border-2 border-transparent'
+                            ? 'bg-sage border-sage accent-sage'
+                            : 'border-earth/30 hover:border-sage'
                           }
                         `}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selectedModalities.includes(modality.id)}
-                          onChange={() => toggleModality(modality.id)}
-                          className="sr-only"
-                        />
-                        <div className="flex items-center gap-3 w-full">
-                          <div className={`
-                            w-5 h-5 rounded flex items-center justify-center flex-shrink-0 transition-all
-                            ${selectedModalities.includes(modality.id)
-                              ? 'bg-sage'
-                              : 'bg-white border-2 border-earth/30'
-                            }
-                          `}>
-                            <AnimatePresence>
-                              {selectedModalities.includes(modality.id) && (
-                                <motion.svg
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
-                                  exit={{ scale: 0 }}
-                                  className="w-3 h-3 text-white"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                </motion.svg>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                          <span className="font-primary text-sm">{modality.label}</span>
-                        </div>
-                      </motion.label>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                      />
+                    </div>
+                    <span className={`font-primary text-sm flex-1 ${
+                      selectedModalities.includes(modality.id) 
+                        ? 'text-earth-dark font-semibold'
+                        : 'text-earth'
+                    }`}>{modality.label}</span>
+                  </motion.label>
+                ))}
+              </div>
             </div>
             
             {selectedModalities.length > 0 && (
@@ -184,11 +157,11 @@ export default function UserSettings() {
 
           <motion.button 
             type="submit"
-            className="w-full px-8 py-3 bg-sage text-white rounded-full font-primary font-semibold hover:bg-sage-dark transition-colors shadow-soft hover:shadow-medium"
+            className="w-full px-8 py-3 bg-primary text-white rounded-full font-primary font-semibold hover:bg-primary-dark transition-colors shadow-soft hover:shadow-medium text-center flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Let's begin!
+            Start
           </motion.button>
         </form>
       </div>

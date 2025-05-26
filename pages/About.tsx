@@ -127,32 +127,32 @@ const About = () => {
               animate={pageInView ? "animate" : "initial"}
             >
               <motion.div
-                className="bg-white p-10 rounded-lg shadow-soft md:col-span-1"
+                className="bg-white p-8 rounded-lg shadow-soft md:col-span-1"
                 variants={cardVariants}
               >
-                <h3 className="text-xl font-bold mb-6 text-sage text-center">The Problem</h3>
+                <h3 className="text-xl font-bold mb-4 text-sage text-center">The Problem</h3>
                 <p className="font-primary text-earth leading-relaxed">
-                  Traditional training falls short: students role-play with peers who are emotionally attuned, case studies only cover theory, and practice sessions are too short, all while faculty juggle too many learners to provide deep, meaningful feedback.
+                  Traditional clinical training falls short: students role-play with peers who are emotionally attuned, case studies focus on theory, and practice sessions are too short, all while faculty juggle too many learners to provide deep, meaningful feedback.
                 </p>
               </motion.div>
 
               <motion.div
-                className="bg-white p-10 rounded-lg shadow-soft md:col-span-1"
+                className="bg-white p-8 rounded-lg shadow-soft md:col-span-1"
                 variants={cardVariants}
               >
-                <h3 className="text-xl font-bold mb-6 text-sage text-center">The Gap</h3>
+                <h3 className="text-xl font-bold mb-4 text-sage text-center">The Gap</h3>
                 <p className="font-primary text-earth leading-relaxed">
                   Without realistic, full-length simulations and personalized insights, students leave programs uncertain, underprepared, and without clear metrics to demonstrate clinical competence.
                 </p>
               </motion.div>
 
               <motion.div
-                className="bg-white p-10 rounded-lg shadow-soft md:col-span-2 lg:col-span-1"
+                className="bg-white p-8 rounded-lg shadow-soft md:col-span-2 lg:col-span-1"
                 variants={cardVariants}
               >
-                <h3 className="text-xl font-bold mb-6 text-sage text-center">Our Solution</h3>
+                <h3 className="text-xl font-bold mb-4 text-sage text-center">Our Solution</h3>
                 <p className="font-primary text-earth leading-relaxed">
-                  Session Ready bridges the gap with AI-driven, full session length simulations that feature diverse client personas, adaptive detours, real-time feedback, and comprehensive performance analytics so trainees build practical skills.
+                  Session Ready is the premier AI-powered training platform offering full-session simulations with diverse client personas and adaptive detours. With real-time feedback and detailed performance analytics, trainees build practical counseling skills and confidence before ever seeing real clients.
                 </p>
               </motion.div>
             </motion.div>

@@ -1,23 +1,69 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navigation from '../components/common/Navigation';
 import Footer from '../components/common/Footer';
 
+const TALLY_SCRIPT_URL = 'https://tally.so/widgets/embed.js';
+const FORM_HEIGHT = '846';
+
 const EarlyAccess = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+
   useEffect(() => {
-    // Inline script to load Tally embeds
-    const script = document.createElement('script');
-    script.innerHTML = `
-      var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-    `;
-    document.body.appendChild(script);
+    let mounted = true;
+
+    const loadTallyScript = async () => {
+      try {
+        // Check if script is already loaded
+        if (document.querySelector(`script[src="${TALLY_SCRIPT_URL}"]`)) {
+          if (mounted) setIsLoading(false);
+          return;
+        }
+
+        // Create and load script
+        const script = document.createElement('script');
+        script.src = TALLY_SCRIPT_URL;
+        script.async = true;
+        scriptRef.current = script;
+
+        const loadPromise = new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = reject;
+        });
+
+        document.body.appendChild(script);
+        await loadPromise;
+
+        if (mounted) {
+          if (typeof window.Tally !== 'undefined') {
+            window.Tally.loadEmbeds();
+          }
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Failed to load Tally form:', error);
+        if (mounted) setIsLoading(false);
+      }
+    };
+
+    loadTallyScript();
 
     return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+      mounted = false;
+      // Clean up script if component unmounts during loading
+      if (scriptRef.current && document.body.contains(scriptRef.current)) {
+        document.body.removeChild(scriptRef.current);
       }
     };
   }, []);
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+    if (iframeRef.current) {
+      iframeRef.current.style.height = FORM_HEIGHT + 'px';
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -31,16 +77,27 @@ const EarlyAccess = () => {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden relative min-h-[846px]">
+              {isLoading && (
+                <div className="absolute inset-0 bg-white flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-12 h-12 border-3 border-sage border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-sage font-primary">Loading form...</p>
+                  </div>
+                </div>
+              )}
               <iframe 
+                ref={iframeRef}
                 data-tally-src="https://tally.so/embed/mYyN5d?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                loading="lazy" 
+                loading="eager"
                 width="100%" 
-                height="846" 
+                height={FORM_HEIGHT}
                 frameBorder="0" 
                 marginHeight={0} 
                 marginWidth={0} 
-                title="Email Collect-Sign Up Beta Testers"
+                title="Early Access Sign Up Form"
+                className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                onLoad={handleIframeLoad}
               />
             </div>
           </div>
@@ -50,5 +107,14 @@ const EarlyAccess = () => {
     </div>
   );
 };
+
+// Add type declaration for Tally
+declare global {
+  interface Window {
+    Tally?: {
+      loadEmbeds: () => void;
+    };
+  }
+}
 
 export default EarlyAccess; 

@@ -39,7 +39,6 @@ export default {
       },
       fontFamily: {
         'primary': ['Source Sans Pro', 'sans-serif'],
-        'secondary': ['Playfair Display', 'serif'],
         'nunito': ['Nunito', 'sans-serif']
       },
       boxShadow: {
