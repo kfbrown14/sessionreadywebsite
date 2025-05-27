@@ -195,7 +195,7 @@ const About = () => {
 
                   <StoryCard title="What We Believe" variants={cardVariants}>
                     <p className="font-primary text-earth leading-relaxed text-lg">
-                      Every client deserves skilled, compassionate, and culturally competent care. At Session Ready, our mission is to empower therapists to provide transformative care through authentic, skill-focused practice. We're committed to ensuring every graduate enters their first session confident, competent, and ready to make a lasting impact on the lives of the people they serve.
+                      Every client deserves skilled, compassionate, and culturally competent care. Session Ready empowers therapists to deliver transformative care through realistic, skill-focused, simulation-based practice. We're committed to ensuring every graduate enters their first session confident, competent, and ready to make a lasting impact on the lives of the people they serve.
                     </p>
                   </StoryCard>
                 </motion.div>

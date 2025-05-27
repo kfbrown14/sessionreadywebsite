@@ -16,7 +16,7 @@ const Footer = () => {
               <span className="font-nunito text-xl font-bold">Session Ready</span>
             </Link>
             <p className="text-primary mb-6 max-w-xs">
-              Our mission is to empower therapists to provide transformative care through authentic, skill-focused practice.
+              Session Ready empowers therapists to deliver transformative care through realistic, skill-focused, simulation-based practice.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-primary hover:text-secondary transition-colors hidden" aria-label="Facebook">
@@ -70,9 +70,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-primary/20">
           <p className="text-primary text-sm mb-4 md:mb-0">&copy; {new Date().getFullYear()} Session Ready. All rights reserved.</p>
           <div className="flex space-x-6">
-            <Link to="/terms" className="text-primary text-sm hover:text-secondary transition-colors">Terms of Service</Link>
+            {/* <Link to="/terms" className="text-primary text-sm hover:text-secondary transition-colors">Terms of Service</Link> */}
             {/* <Link to="/privacy" className="text-primary text-sm hover:text-secondary transition-colors">Privacy Policy</Link> */}
-            <Link to="/cookies" className="text-primary text-sm hover:text-secondary transition-colors">Cookie Policy</Link>
+            {/* <Link to="/cookies" className="text-primary text-sm hover:text-secondary transition-colors">Cookie Policy</Link> */}
           </div>
         </div>
       </div>

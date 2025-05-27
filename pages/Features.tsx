@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Settings, Target, Play, MessageSquare, BarChart3 } from 'lucide-react';
@@ -6,13 +7,27 @@ import Footer from '../components/common/Footer';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 
-const Features = () => {
+interface Feature {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  bgColor: string;
+  iconColor: string;
+}
+
+interface AnimationVariant {
+  initial: { opacity: number; y: number };
+  animate: { opacity: number; y: number };
+  transition: { duration: number; ease: string };
+}
+
+const Features = (): React.ReactElement => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
-  const features = [
+  const features: Feature[] = [
     {
       icon: <Settings className="w-8 h-8" />,
       title: 'Instant Personalization',
@@ -50,7 +65,7 @@ const Features = () => {
     }
   ];
 
-  const fadeInUp = {
+  const fadeInUp: AnimationVariant = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.4, ease: "easeOut" }
@@ -107,7 +122,15 @@ const Features = () => {
               Join thousands of therapists developing their skills in our supportive digital ecosystem.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg" onClick={() => window.location.href = '/early-access'}>Start Free Trial</Button>
+              <Button 
+                variant="primary" 
+                size="lg" 
+                onClick={(): void => {
+                  window.location.href = '/early-access';
+                }}
+              >
+                Start Free Trial
+              </Button>
             </div>
           </div>
         </div>
