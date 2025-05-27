@@ -31,7 +31,7 @@ const Features = (): React.ReactElement => {
     {
       icon: <Settings className="w-8 h-8" />,
       title: 'Instant Personalization',
-      description: 'Customize your learning experience by selecting from a diverse range of client profiles, presenting issues, and therapeutic modalities. Practice with cases that match your training goals and interests.',
+      description: 'Customize your learning experience by selecting from a diverse range of client profiles, presenting issues (for example anxiety, depression or relationship concerns), and therapeutic modalities (for example CBT, EFT, or Solution-Focused). Practice with cases that match your training goals and interests.',
       bgColor: 'bg-sage-light/10',
       iconColor: 'text-secondary-light'
     },
