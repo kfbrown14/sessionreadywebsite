@@ -128,8 +128,6 @@ function App() {
             <Route path="/guides" element={<ComingSoonPage title="Guides" />} />
             <Route path="/support" element={<ComingSoonPage title="Support" />} />
             <Route path="/careers" element={<CareersPage />} />
-            <Route path="/terms" element={<ComingSoonPage title="Terms of Service" />} />
-            <Route path="/cookies" element={<ComingSoonPage title="Cookie Policy" />} />
             
             {/* Catch all route */}
             <Route path="*" element={<Navigate to="/" replace />} />
