@@ -4,6 +4,7 @@ import { Users, MessageCircle, LineChart, Shield } from 'lucide-react';
 import Navigation from '../../components/common/Navigation';
 import Footer from '../../components/common/Footer';
 import Button from '../../components/common/Button';
+import GoogleAnalytics from '../../components/common/GoogleAnalytics';
 
 const PracticeGreenhouse = () => {
   const [ref, inView] = useInView({
@@ -36,6 +37,7 @@ const PracticeGreenhouse = () => {
 
   return (
     <div className="min-h-screen bg-mist">
+      <GoogleAnalytics />
       <Navigation />
       
       <section className="pt-32 pb-20 bg-gradient-to-br from-sage-light/50 via-lavender-light to-earth-light/30">

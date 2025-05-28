@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Button from '../../components/common/Button';
+import GoogleAnalytics from '../../components/common/GoogleAnalytics';
 
 const TALLY_SCRIPT_URL = 'https://tally.so/widgets/embed.js';
 const APP_IMAGE_URL = '/session ready therapy training app.jpg';
@@ -39,6 +40,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-80px)] pt-20 overflow-hidden gradient-hero" role="banner" aria-label="Hero section">
+      <GoogleAnalytics />
       <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
         <motion.div 
           className="text-center max-w-2xl mb-12 mt-8"

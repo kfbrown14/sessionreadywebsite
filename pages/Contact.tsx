@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import Navigation from '../components/common/Navigation';
 import Footer from '../components/common/Footer';
+import GoogleAnalytics from '../components/common/GoogleAnalytics';
 
 const Contact = () => {
   const fadeInUp = {
@@ -28,6 +29,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
+      <GoogleAnalytics />
       <Navigation />
       <div className="pt-32 pb-20 bg-gradient-to-br from-sage-light/20 to-lavender-light/30">
         <div className="container mx-auto px-4">

@@ -5,10 +5,12 @@ import FeaturesSection from './landing/FeaturesSection';
 import Testimonials from './landing/Testimonials';
 import CTA from './landing/CTA';
 import Footer from '../components/common/Footer';
+import GoogleAnalytics from '../components/common/GoogleAnalytics';
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-neutral">
+      <GoogleAnalytics />
       <Navigation />
       <Hero />
       <Vision />

@@ -6,6 +6,7 @@ import Navigation from '../components/common/Navigation';
 import Footer from '../components/common/Footer';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
+import GoogleAnalytics from '../components/common/GoogleAnalytics';
 
 interface Feature {
   icon: React.ReactNode;
@@ -73,6 +74,7 @@ const Features = (): React.ReactElement => {
 
   return (
     <div className="min-h-screen bg-mist">
+      <GoogleAnalytics />
       <Navigation />
       
       {/* Features Section */}

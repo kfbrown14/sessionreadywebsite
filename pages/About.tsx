@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import Navigation from '../components/common/Navigation';
 import Footer from '../components/common/Footer';
 import Button from '../components/common/Button';
+import GoogleAnalytics from '../components/common/GoogleAnalytics';
 import { useMemo, memo, useCallback } from 'react';
 
 // Optimized animation variants - reduced complexity
@@ -106,6 +107,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-mist" ref={pageRef}>
+      <GoogleAnalytics />
       <Navigation />
       
       {/* Vision Section */}
