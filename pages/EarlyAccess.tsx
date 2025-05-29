@@ -36,10 +36,13 @@ const EarlyAccess = () => {
         await loadPromise;
 
         if (mounted) {
-          if (typeof window.Tally !== 'undefined') {
-            window.Tally.loadEmbeds();
-          }
-          setIsLoading(false);
+          // Add a small delay to ensure script is fully initialized
+          setTimeout(() => {
+            if (typeof window.Tally !== 'undefined') {
+              window.Tally.loadEmbeds();
+            }
+            setIsLoading(false);
+          }, 500);
         }
       } catch (error) {
         console.error('Failed to load Tally form:', error);
@@ -51,10 +54,10 @@ const EarlyAccess = () => {
 
     return () => {
       mounted = false;
-      // Clean up script if component unmounts during loading
-      if (scriptRef.current && document.body.contains(scriptRef.current)) {
-        document.body.removeChild(scriptRef.current);
-      }
+      // Don't remove the script on unmount as it might be needed for form submission
+      // if (scriptRef.current && document.body.contains(scriptRef.current)) {
+      //   document.body.removeChild(scriptRef.current);
+      // }
     };
   }, []);
 
@@ -98,6 +101,8 @@ const EarlyAccess = () => {
                 title="Early Access Sign Up Form"
                 className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                 onLoad={handleIframeLoad}
+                allow="payment *"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
               />
             </div>
           </div>
