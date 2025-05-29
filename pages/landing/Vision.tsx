@@ -60,7 +60,7 @@ const Vision = () => {
               role="article"
               aria-labelledby="problem-title"
             >
-              <h3 id="problem-title" className="text-xl font-bold mb-4 text-sage text-center">The Problem</h3>
+              <h3 id="problem-title" className="text-xl font-bold mb-4 text-sage text-center">Clinical Training Isn't Realistic</h3>
               <p className="font-primary text-earth leading-relaxed">
                 Traditional clinical training falls short: students role-play with peers who are emotionally attuned, case studies focus on theory, and practice sessions are too short, all while faculty juggle too many learners to provide deep, meaningful feedback.
               </p>
@@ -72,7 +72,7 @@ const Vision = () => {
               role="article"
               aria-labelledby="gap-title"
             >
-              <h3 id="gap-title" className="text-xl font-bold mb-4 text-sage text-center">The Gap</h3>
+              <h3 id="gap-title" className="text-xl font-bold mb-4 text-sage text-center">Practitioners Feel Unprepared</h3>
               <p className="font-primary text-earth leading-relaxed">
                 Without realistic, full-length simulations and personalized insights, students leave programs uncertain, underprepared, and without clear metrics to demonstrate clinical competence.
               </p>
@@ -84,7 +84,7 @@ const Vision = () => {
               role="article"
               aria-labelledby="solution-title"
             >
-              <h3 id="solution-title" className="text-xl font-bold mb-4 text-sage text-center">Our Solution</h3>
+              <h3 id="solution-title" className="text-xl font-bold mb-4 text-sage text-center">Real Training for Real Therapy</h3>
               <p className="font-primary text-earth leading-relaxed">
                 Session Ready is the premier AI-powered training platform offering full-session simulations with diverse client personas and adaptive detours. With real-time feedback and detailed performance analytics, trainees build practical counseling skills and confidence before ever seeing real clients.
               </p>

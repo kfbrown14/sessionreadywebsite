@@ -109,58 +109,6 @@ const About = () => {
     <div className="min-h-screen bg-mist" ref={pageRef}>
       <GoogleAnalytics />
       <Navigation />
-      
-      {/* Vision Section */}
-      <section className="pt-32 pb-20 bg-sage-light/10">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center max-w-3xl mx-auto mb-16"
-            {...fadeInUp}
-            animate={pageInView ? fadeInUp.animate : fadeInUp.initial}
-          >
-            <h2 className="font-nunito text-3xl font-bold mb-4">What Inspired Our Vision</h2>
-          </motion.div>
-
-          <div className="max-w-5xl mx-auto">
-            <motion.div 
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
-              variants={staggerContainer}
-              initial="initial"
-              animate={pageInView ? "animate" : "initial"}
-            >
-              <motion.div
-                className="bg-white p-8 rounded-lg shadow-soft md:col-span-1"
-                variants={cardVariants}
-              >
-                <h3 className="text-xl font-bold mb-4 text-sage text-center">The Problem</h3>
-                <p className="font-primary text-earth leading-relaxed">
-                  Traditional clinical training falls short: students role-play with peers who are emotionally attuned, case studies focus on theory, and practice sessions are too short, all while faculty juggle too many learners to provide deep, meaningful feedback.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="bg-white p-8 rounded-lg shadow-soft md:col-span-1"
-                variants={cardVariants}
-              >
-                <h3 className="text-xl font-bold mb-4 text-sage text-center">The Gap</h3>
-                <p className="font-primary text-earth leading-relaxed">
-                  Without realistic, full-length simulations and personalized insights, students leave programs uncertain, underprepared, and without clear metrics to demonstrate clinical competence.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="bg-white p-8 rounded-lg shadow-soft md:col-span-2 lg:col-span-1"
-                variants={cardVariants}
-              >
-                <h3 className="text-xl font-bold mb-4 text-sage text-center">Our Solution</h3>
-                <p className="font-primary text-earth leading-relaxed">
-                  Session Ready is the premier AI-powered training platform offering full-session simulations with diverse client personas and adaptive detours. With real-time feedback and detailed performance analytics, trainees build practical counseling skills and confidence before ever seeing real clients.
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Founder's Story Section */}
       <section className="py-20 bg-white">
@@ -185,13 +133,13 @@ const About = () => {
                 >
                   <StoryCard title="Why I Started Session Ready" variants={cardVariants}>
                     <p className="font-primary text-earth leading-relaxed text-lg">
-                      I was deeply grateful for my graduate program. It laid a solid foundation in theory and skill, but I often found myself wishing for more realistic practice. Traditional role-plays and case studies just couldn't replicate the nuanced challenges of a full clinical session. Let's face it, the moment you get in front of a client recounting trauma or at risk of self-harm, it can be incredibly daunting. I saw my classmates and I grappling with uncertainty as we stepped into real therapy rooms, worried we weren't fully prepared.
+                      I'm Kelsey Brown Coleman, from Bentonville, Arkansas. I loved my graduate program, but even after many role-plays, I craved something more realistic. I wanted practice sessions that felt like real therapy, complete with surprise turns and complex issues. Playing clients with fellow students felt like a cheat code, not the beautifully unpredictable humanity of real clients. I watched my classmates and I grapple with uncertainty when faced with real client scenarios, trauma, crisis, or off-script detours. Because of this experience, I decided to build the practice playground I always wished I'd had.
                     </p>
                   </StoryCard>
 
                   <StoryCard title="How We Built It" variants={cardVariants}>
                     <p className="font-primary text-earth leading-relaxed text-lg">
-                      For the first 14+ years of my career, I worked in technology and product innovation. But once I started training as a future therapist, I knew I had to combine my clinical training with my innovative approach to technology. I set out to create the tools I always wished I had access to during my training. By harnessing AI-driven simulations, adaptive scenarios, and real-time insights, I crafted a platform that offers focused, repeatable practice. We mirror the full arc of a 50+ minute session and deliver feedback that transforms students into skilled practitioners.
+                      For the first 14+ years of my career, I worked in technology and product innovation. But once I started training as a future therapist, I knew I had to combine my clinical training with my innovative approach to technology. By harnessing AI-driven simulations, adaptive scenarios, and real-time insights, I crafted a platform that offers focused, repeatable practice. We mirror the full arc of a 50+ minute session and deliver feedback that transforms students into skilled practitioners.
                     </p>
                   </StoryCard>
 
