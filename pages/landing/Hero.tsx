@@ -36,9 +36,9 @@ export default function Hero() {
               size="lg" 
               className="bg-primary text-white hover:bg-primary-dark transition-colors duration-200"
               onClick={handleStartTrial}
-              aria-label="Start your free trial"
+              aria-label="Get Early Access + Exclusive Discount"
             >
-              Start Free Trial
+              Get Early Access + Exclusive Discount
             </Button>
           </div>
         </motion.div>

@@ -39,9 +39,9 @@ const CTA = () => {
               size="lg"
               className="w-full sm:w-auto px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
               onClick={() => navigate('/early-access')}
-              aria-label="Start your free trial now"
+              aria-label="Get Early Access + Exclusive Discount"
             >
-              Try for Free!
+              Get Early Access + Exclusive Discount
             </Button>
           </motion.div>
         </div>
