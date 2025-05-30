@@ -19,7 +19,7 @@
  */
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import * as Sentry from '@sentry/react';
 import { LiveAPIProvider } from './contexts/LiveAPIContext';
 import ScrollToTop from './components/common/ScrollToTop';

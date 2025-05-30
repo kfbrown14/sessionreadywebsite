@@ -75,8 +75,8 @@ const EarlyAccess = () => {
       <div className="flex-grow pt-20 pb-10 bg-gradient-to-br from-sage-light/20 to-lavender-light/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-6">
-            <h1 className="font-nunito text-3xl md:text-4xl font-bold mb-4 text-primary-dark">
-              Help Shape the Future of Counseling Tools – Become a Founding Beta User
+            <h1 className="font-nunito text-2xl md:text-3xl font-bold mb-4 text-primary-dark">
+              Help Shape the Future of Therapy Training Tools – Become a Founding Beta User
             </h1>
           </div>
           

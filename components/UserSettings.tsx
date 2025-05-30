@@ -3,12 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Modal from './Modal';
-import { useUI, useUser } from '@/lib/state';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useUI, useUser } from '../lib/state';
+import Modal from './Modal';
 
-const THERAPEUTIC_MODALITIES = [
+interface TherapeuticModality {
+  id: string;
+  label: string;
+}
+
+const THERAPEUTIC_MODALITIES: TherapeuticModality[] = [
   { id: 'cbt', label: 'Cognitive Behavioral Therapy (CBT)' },
   { id: 'dbt', label: 'Dialectical Behavior Therapy (DBT)' },
   { id: 'psychodynamic', label: 'Psychodynamic Therapy' },
@@ -23,7 +28,7 @@ const THERAPEUTIC_MODALITIES = [
   { id: 'art', label: 'Art Therapy' },
   { id: 'play', label: 'Play Therapy' },
   { id: 'family-systems', label: 'Family Systems Therapy' },
-  { id: 'mindfulness', label: 'Mindfulness-Based Therapy' },
+  { id: 'mindfulness', label: 'Mindfulness-Based Therapy' }
 ];
 
 export default function UserSettings() {

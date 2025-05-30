@@ -8,6 +8,7 @@ import {
   trackPerformance,
   trackError
 } from '../config/analytics';
+import { onCLS, onFID, onLCP } from 'web-vitals';
 
 export function useAnalytics() {
   const location = useLocation();
@@ -24,14 +25,13 @@ export function useAnalytics() {
   useEffect(() => {
     const loadWebVitals = async () => {
       try {
-        const { getCLS, getFID, getLCP } = await import('web-vitals');
-        getCLS((metric: Metric) => {
+        onCLS((metric: Metric) => {
           trackPerformance(PERFORMANCE_METRICS.API_RESPONSE_TIME, metric.value);
         });
-        getFID((metric: Metric) => {
+        onFID((metric: Metric) => {
           trackPerformance(PERFORMANCE_METRICS.MODEL_RESPONSE_TIME, metric.value);
         });
-        getLCP((metric: Metric) => {
+        onLCP((metric: Metric) => {
           trackPerformance(PERFORMANCE_METRICS.SIMULATION_LOAD_TIME, metric.value);
         });
       } catch (error) {
@@ -47,11 +47,11 @@ export function useAnalytics() {
     trackEvent(ANALYTICS_EVENTS.SIMULATION_START, { simulationType });
   }, []);
 
-  const trackSimulationComplete = useCallback((simulationType: string, duration: number) => {
-    trackEvent(ANALYTICS_EVENTS.SIMULATION_COMPLETE, { 
-      simulationType,
+  const trackSimulationComplete = useCallback((duration: number, success: boolean) => {
+    trackEvent(ANALYTICS_EVENTS.SIMULATION_COMPLETE, {
       duration,
-      success: true 
+      success,
+      timestamp: new Date().toISOString()
     });
   }, []);
 
@@ -59,7 +59,7 @@ export function useAnalytics() {
     trackEvent(ANALYTICS_EVENTS.FEEDBACK_VIEWED, { feedbackType });
   }, []);
 
-  const trackProgressUpdate = useCallback((metrics: Record<string, any>) => {
+  const trackProgress = useCallback((metrics: Record<string, number>) => {
     trackEvent(ANALYTICS_EVENTS.PROGRESS_TRACKED, metrics);
   }, []);
 
@@ -84,13 +84,47 @@ export function useAnalytics() {
     }
   }, []);
 
+  const trackPageView = () => {
+    trackEvent('PAGE_VIEW', {
+      path: window.location.pathname,
+      title: document.title
+    });
+  };
+
+  const trackWebVitals = async () => {
+    try {
+      onCLS((metric) => {
+        trackPerformance('API_RESPONSE_TIME', metric.value);
+      });
+
+      onFID((metric) => {
+        trackPerformance('MODEL_RESPONSE_TIME', metric.value);
+      });
+
+      onLCP((metric) => {
+        trackPerformance('SIMULATION_LOAD_TIME', metric.value);
+      });
+    } catch (error) {
+      console.error('Failed to track web vitals:', error);
+    }
+  };
+
+  const trackMemoryUsage = () => {
+    if (typeof window !== 'undefined' && (performance as any).memory) {
+      const memory = (performance as any).memory;
+      trackPerformance('MEMORY_USAGE', memory.usedJSHeapSize / 1048576); // Convert to MB
+    }
+  };
+
   return {
+    trackPageView,
+    trackWebVitals,
     trackSimulationStart,
     trackSimulationComplete,
     trackFeedbackViewed,
-    trackProgressUpdate,
+    trackProgress,
+    trackMemoryUsage,
     trackAPIError,
-    // Export the base functions as well
     trackEvent,
     trackPerformance,
     trackError,

@@ -12,35 +12,42 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-80px)] pt-14 overflow-hidden gradient-hero" role="banner" aria-label="Hero section">
+    <section className="relative min-h-[calc(100vh-80px)] pt-6 overflow-hidden gradient-hero" role="banner" aria-label="Hero section">
       <GoogleAnalytics />
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
+      <div className="container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
         <motion.div 
-          className="text-center max-w-2xl mb-12 mt-6"
+          className="text-center max-w-3xl mb-12 mt-1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-nunito text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-            Immerse. Improve. Inspire.<br />
-            <span className="text-primary">Practice That Matters.</span>
+          <h1 className="font-nunito text-2xl md:text-3xl lg:text-4xl font-bold leading-relaxed mb-8 bg-gradient-to-r from-primary via-sage to-primary bg-clip-text text-transparent drop-shadow-sm">
+            <span>Practice That Matters.</span>
           </h1>
           
-          <p className="font-primary text-lg md:text-xl text-primary max-w-lg mx-auto mb-8">
-            Bridge the gap between theory and clinical practice with realistic therapy simulations and expert coaching, all before your first client.
+          <p className="font-primary text-base sm:text-lg md:text-xl text-primary/90 max-w-[90%] sm:max-w-4xl mx-auto mb-8 sm:mb-12 leading-snug sm:leading-normal px-4 sm:px-0">
+            Sharpen your therapy skills at any stage—{' '}
+            <span className="sm:hidden"><br /></span>
+            immerse in our powerful AI simulations{' '}
+            <span className="hidden sm:inline"><br /></span>
+            with lifelike client personas and get instant coaching feedback to elevate every session.
           </p>
           
-          <div className="flex justify-center">
+          <motion.div 
+            className="flex justify-center"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <Button 
               variant="primary" 
               size="lg" 
-              className="bg-primary text-white hover:bg-primary-dark transition-colors duration-200"
+              className="bg-primary text-white hover:bg-primary-dark transition-all duration-300 shadow-md hover:shadow-lg"
               onClick={handleStartTrial}
               aria-label="Get Early Access + Exclusive Discount"
             >
               Get Early Access + Exclusive Discount
             </Button>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
       
